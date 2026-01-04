@@ -3,475 +3,864 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NPTEL Courses</title>
+    <meta name="description" content="Browse 3200+ NPTEL courses from IITs and IISc across all engineering disciplines.">
+    <title>NPTEL Courses | Browse & Enroll</title>
     <style>
+        :root {
+            --primary-blue: #0047AB;
+            --deep-blue: #002855;
+            --accent-gold: #FFC107;
+            --bright-gold: #FFD700;
+            --white: #FFFFFF;
+            --light: #F8F9FA;
+            --gray-100: #F1F3F5;
+            --gray-200: #E9ECEF;
+            --gray-600: #6C757D;
+            --gray-800: #343A40;
+            --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.08);
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);
+            --shadow-xl: 0 12px 40px rgba(0, 0, 0, 0.15);
+        }
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
         
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            background: #fff;
-            color: #003d7a;
+        html {
+            scroll-behavior: smooth;
+            height: 100%;
         }
-        
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: var(--white);
+            color: var(--gray-800);
+            line-height: 1.6;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Header - Compact & Modern */
         .header {
-            background:#003d7a;
-            border-bottom: 3px solid #FFD700;
-            padding: 15px 0;
+            background: linear-gradient(135deg, var(--deep-blue) 0%, var(--primary-blue) 100%);
+            padding: 12px 0;
+            box-shadow: var(--shadow-md);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
         
         .header-inner {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             display: flex;
             align-items: center;
-            padding: 0 15px;
-            gap: 20px;
+            padding: 0 30px;
+            gap: 25px;
         }
         
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
         .logo-rotating {
-            width: 60px;
-            height: 60px;
-            animation: spin 8s linear infinite;
+            width: 64px;
+            height: 64px;
+            animation: spin 10s linear infinite;
             border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid var(--accent-gold);
+            flex-shrink: 0;
+        }
+
+        @keyframes spin { 
+            100% { transform: rotate(360deg); } 
+        }
+
+        .logo-rotating video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .brand-text h1 { 
+            color: var(--white); 
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .brand-text p { 
+            color: rgba(255, 255, 255, 0.85); 
+            font-size: 11px;
+        }
+        
+        .header-right { 
+            margin-left: auto;
+            display: flex; 
+            gap: 12px;
+        }
+        
+        .btn-header {
+            background: var(--accent-gold);
+            color: var(--deep-blue);
+            border: none;
+            padding: 10px 24px;
+            font-size: 13px;
+            cursor: pointer;
+            font-weight: 600;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-header:hover {
+            background: var(--bright-gold);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 193, 7, 0.4);
+        }
+
+        .btn-header.home {
+            background: var(--white);
+            color: var(--deep-blue);
+        }
+
+        .btn-header.home:hover {
+            background: var(--gray-100);
+        }
+
+        /* Navigation - Sleek */
+        .navbar {
+            background: var(--white);
+            border-bottom: 1px solid var(--gray-200);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .navbar ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+        
+        .navbar a {
+            display: block;
+            color: var(--gray-800);
+            text-decoration: none;
+            padding: 18px 30px;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .navbar a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 3px;
+            background: var(--primary-blue);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+        
+        .navbar a:hover {
+            color: var(--primary-blue);
+        }
+
+        .navbar a:hover::after {
+            width: 70%;
+        }
+
+        .navbar a.active { 
+            color: var(--primary-blue);
+            font-weight: 700;
+        }
+
+        .navbar a.active::after {
+            width: 70%;
+        }
+
+        /* Page Hero */
+        .page-hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            padding: 60px 30px;
+            text-align: center;
+            position: relative;
             overflow: hidden;
         }
 
-        .logo-rotating video { width: 100%; height: 100%; object-fit: cover; }
-
-        @keyframes spin {
-            100% { transform: rotate(360deg); }
+        .page-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>');
+            opacity: 0.3;
         }
 
-        .header-text { flex: 1; }
-        .header-text h1 { color: #fff; font-size: 22px; font-weight: bold; }
-        .header-text p { color: #fff; font-size: 12px; }
-        
-        .header-right { display: flex; gap: 10px; align-items: center; }
-        .btn-header {
-            background: #FFD700;
-            color: #003d7a;
-            border: none;
-            padding: 8px 15px;
-            font-size: 12px;
-            cursor: pointer;
-            font-weight: bold;
-            border-radius: 4px;
+        .page-hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
         }
 
-        .navbar { background: #003d7a; border-bottom: 2px solid #002b54; }
-        .navbar ul { list-style: none; display: flex; justify-content: center; }
-        .navbar a { display: block; color: #fff; text-decoration: none; padding: 15px 25px; font-size: 13px; font-weight: 600; }
-        .navbar a:hover { background: #FFD700; color: #003d7a; }
-
-        .content-wrapper { max-width: 1200px; margin: 20px auto; padding: 0 15px; }
-
-        .page-title {
-            font-size: 32px;
-            color: #003d7a;
-            margin-bottom: 30px;
-            font-weight: bold;
+        .page-hero h1 {
+            font-size: clamp(32px, 5vw, 48px);
+            color: var(--white);
+            margin-bottom: 15px;
+            font-weight: 800;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
         }
-        
+
+        .page-hero p {
+            color: rgba(255, 255, 255, 0.95);
+            font-size: clamp(16px, 2.5vw, 18px);
+            font-weight: 400;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Content Area */
+        .content-wrapper {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 60px 30px;
+            flex: 1;
+        }
+
         /* Course Grid */
         .courses-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
             margin-bottom: 40px;
         }
         
         .course-card {
-            background: #fff;
-            border: 2px solid #003d7a;
-            border-radius: 8px;
+            background: var(--white);
+            border-radius: 16px;
             overflow: hidden;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             cursor: pointer;
+            box-shadow: var(--shadow-sm);
+            border: 2px solid var(--gray-200);
+            position: relative;
+        }
+
+        .course-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--accent-gold));
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
         }
         
         .course-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0,61,122,0.3);
-            border-color: #FFD700;
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--primary-blue);
+        }
+
+        .course-card:hover::before {
+            transform: scaleX(1);
         }
         
         .course-header {
-            background: #003d7a;
-            color: #fff;
-            padding: 15px;
-            font-size: 16px;
-            font-weight: bold;
+            background: linear-gradient(135deg, var(--primary-blue), var(--deep-blue));
+            color: var(--white);
+            padding: 20px 25px;
+            font-size: 15px;
+            font-weight: 700;
             display: flex;
             align-items: center;
             justify-content: space-between;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
         
         .enroll-badge {
-            background: #FFD700;
-            color: #003d7a;
-            padding: 5px 12px;
-            border-radius: 15px;
+            background: var(--accent-gold);
+            color: var(--deep-blue);
+            padding: 6px 16px;
+            border-radius: 20px;
             font-size: 11px;
-            font-weight: bold;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .course-card:hover .enroll-badge {
+            background: var(--white);
+            transform: scale(1.1);
         }
         
         .course-body {
-            padding: 20px;
+            padding: 25px;
         }
         
         .course-title {
-            font-size: 16px;
-            font-weight: bold;
-            color: #003d7a;
-            margin-bottom: 12px;
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 15px;
             line-height: 1.4;
         }
         
         .course-category {
-            color: #666;
+            color: var(--gray-600);
             font-size: 13px;
-            margin-bottom: 8px;
+            margin-bottom: 12px;
             font-style: italic;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .course-category::before {
+            content: '📚';
         }
         
         .course-instructor {
-            color: #555;
+            color: var(--gray-700);
             font-size: 14px;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .course-instructor::before {
+            content: '👨‍🏫';
         }
         
         .course-institute {
-            color: #003d7a;
-            font-size: 13px;
+            color: var(--primary-blue);
+            font-size: 14px;
             font-weight: 600;
-        }
-          .partners-section {
-            background: #f9f9f9;
-            padding: 40px 0;
-            text-align: center;
-            border-top: 1px solid #ddd;
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
 
-        .partners-section h2 { color: #003d7a; font-size: 20px; margin-bottom: 25px; text-transform: uppercase; }
+        .course-institute::before {
+            content: '🏛️';
+        }
+
+        /* Partners - Minimal & Clean */
+        .partners {
+            background: var(--light);
+            padding: 60px 30px;
+            border-top: 1px solid var(--gray-200);
+        }
+
+        .partners h2 {
+            text-align: center;
+            font-size: clamp(28px, 4vw, 36px);
+            color: var(--primary-blue);
+            margin-bottom: 50px;
+            font-weight: 700;
+        }
 
         .partners-grid {
-            max-width: 1100px;
+            max-width: 1200px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(8, 1fr);
-            gap: 15px;
-            padding: 0 15px;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 25px;
         }
 
-        .partner-link {
-            text-decoration: none;
-            transition: transform 0.3s;
-        }
-
-        .partner-link:hover { transform: translateY(-5px); }
-
-        .partner-box {
-            background: #fff;
-            border: 1px solid #eee;
-            padding: 10px;
-            border-radius: 8px;
+        .partner {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 25px 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            min-height: 100px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-        }
-
-        .partner-box img {
-            width: 50px;
-            height: 50px;
-            object-fit: contain;
-            margin-bottom: 8px;
-        }
-
-        .partner-box span { font-size: 10px; font-weight: bold; color: #333; }
-
-        /* Footer */
-        .footer {
-            background: #000;
-            color: #fff;
-            padding: 40px 0 20px;
-            border-top: 4px solid #FFD700;
+            gap: 12px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            border: 2px solid var(--gray-200);
         }
         
-        .footer-inner { max-width: 1200px; margin: 0 auto; padding: 0 15px; }
-        .footer-columns { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-bottom: 30px; }
-        .footer-col h4 { color: #FFD700; margin-bottom: 20px; font-size: 16px; border-bottom: 1px solid #333; padding-bottom: 10px; }
-        .footer-col ul { list-style: none; }
-        .footer-col li { margin-bottom: 10px; font-size: 13px; }
-        .footer-col a { color: #ccc; text-decoration: none; }
-        .footer-bottom { text-align: center; font-size: 12px; color: #888; border-top: 1px solid #222; padding-top: 20px; }
+        .partner:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--accent-gold);
+        }
+
+        .partner img {
+            width: 55px;
+            height: 55px;
+            object-fit: contain;
+            filter: grayscale(100%);
+            transition: filter 0.3s ease;
+        }
+
+        .partner:hover img {
+            filter: grayscale(0%);
+        }
+
+        .partner span { 
+            font-size: 11px; 
+            font-weight: 700; 
+            color: var(--gray-800);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Footer - Compact */
+        .footer {
+            background: var(--deep-blue);
+            color: rgba(255, 255, 255, 0.8);
+            padding: 50px 30px 25px;
+            border-top: 4px solid var(--accent-gold);
+            margin-top: auto;
+        }
+        
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-col h4 {
+            color: var(--accent-gold);
+            margin-bottom: 20px;
+            font-size: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
+        }
+        
+        .footer-col ul { 
+            list-style: none; 
+        }
+
+        .footer-col li { 
+            margin-bottom: 10px; 
+        }
+
+        .footer-col a { 
+            color: rgba(255, 255, 255, 0.7); 
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .footer-col a:hover { 
+            color: var(--white);
+            padding-left: 5px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.5);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .header-inner {
+                padding: 0 20px;
+            }
+
+            .navbar ul {
+                flex-wrap: wrap;
+                padding: 0 20px;
+            }
+
+            .navbar a {
+                padding: 15px 20px;
+                font-size: 13px;
+            }
+
+            .courses-grid {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+                gap: 25px;
+            }
+
+            .partners-grid {
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            }
+        }
+
+        @media (max-width: 640px) {
+            .brand-text p {
+                display: none;
+            }
+
+            .header-right {
+                flex-wrap: wrap;
+                gap: 8px;
+            }
+
+            .btn-header {
+                padding: 8px 16px;
+                font-size: 11px;
+            }
+
+            .navbar ul {
+                flex-direction: column;
+            }
+
+            .navbar a {
+                text-align: center;
+                border-bottom: 1px solid var(--gray-200);
+            }
+
+            .courses-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .partners-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Smooth Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .course-card {
+            animation: fadeIn 0.6s ease backwards;
+        }
+
+        .course-card:nth-child(1) { animation-delay: 0.05s; }
+        .course-card:nth-child(2) { animation-delay: 0.1s; }
+        .course-card:nth-child(3) { animation-delay: 0.15s; }
+        .course-card:nth-child(4) { animation-delay: 0.2s; }
+        .course-card:nth-child(5) { animation-delay: 0.25s; }
+        .course-card:nth-child(6) { animation-delay: 0.3s; }
+        .course-card:nth-child(7) { animation-delay: 0.35s; }
+        .course-card:nth-child(8) { animation-delay: 0.4s; }
+        .course-card:nth-child(9) { animation-delay: 0.45s; }
+        .course-card:nth-child(10) { animation-delay: 0.5s; }
+        .course-card:nth-child(11) { animation-delay: 0.55s; }
+        .course-card:nth-child(12) { animation-delay: 0.6s; }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
     </style>
 </head>
 <body>
     <header class="header">
         <div class="header-inner">
-            <div class="logo-rotating">
-                <video autoplay loop muted playsinline>
-                    <source src="videoExport-2026-01-03@10-42-33.525-540x540@60fps.mp4" type="video/mp4">
-                </video>
-            </div>
-            <div class="header-text">
-                <h1>NPTEL</h1>
-                <p>National Programme on Technology Enhanced Learning</p>
-                <p>IITs and IISc Initiative | Funded by MoE, Govt. of India</p>
+            <div class="logo-section">
+                <div class="logo-rotating">
+                    <video autoplay loop muted playsinline>
+                        <source src="videoExport-2026-01-03@10-42-33.525-540x540@60fps.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="brand-text">
+                    <h1>NPTEL</h1>
+                    <p>National Programme on Technology Enhanced Learning</p>
+                </div>
             </div>
             <div class="header-right">
-                <button class="btn-header" onclick="alert('Contact Us')">CONTACT US</button>
-                <button class="btn-header">SEARCH</button>
-                <button class="btn-header" style="background:#fff; color:#003d7a;" onclick="window.location.href='index.html'">HOME</button>
+                <button class="btn-header" onclick="alert('Contact Us')">
+                    Contact
+                </button>
+                <button class="btn-header">
+                    Search
+                </button>
+                <button class="btn-header home" onclick="window.location.href='index.html'">
+                    Home
+                </button>
             </div>
         </div>
     </header>
 
     <nav class="navbar">
         <ul>
-            <li><a href="index.html">HOME</a></li>
-            <li><a href="courses.html">COURSES</a></li>
-            <li><a href="initiatives.html">INITIATIVES</a></li>
-            <li><a href="exams.html">EXAMS</a></li>
-            <li><a href="aboutus.html">ABOUT US</a></li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="courses.html" class="active">Courses</a></li>
+            <li><a href="initiatives.html">Initiatives</a></li>
+            <li><a href="exams.html">Exams</a></li>
+            <li><a href="about.html">About</a></li>
         </ul>
     </nav>
 
-    <div class="content-wrapper">
-        <h1 class="page-title">Available Courses</h1>
-        
-        <div class="courses-grid">
-            <!-- Course Card 1 -->
-            <div class="course-card">
-                <div class="course-header">
-                    <span>Aerospace Engineering</span>
-                    <span class="enroll-badge">Enroll Now</span>
-                </div>
-                <div class="course-body">
-                    <div class="course-title">NOC:Introduction to Launch Vehicle Analysis and Design</div>
-                    <div class="course-category">Aerospace Engineering</div>
-                    <div class="course-instructor">Prof. Ashok Joshi</div>
-                    <div class="course-institute">IIT Bombay</div>
-                </div>
+    <main>
+        <section class="page-hero">
+            <div class="page-hero-content">
+                <h1>Available Courses</h1>
+                <p>Explore 3200+ courses from India's premier institutions across all engineering disciplines</p>
             </div>
+        </section>
 
-            <!-- Course Card 2 -->
-            <div class="course-card">
-                <div class="course-header">
-                    <span>Aerospace Engineering</span>
-                    <span class="enroll-badge">Enroll Now</span>
+        <div class="content-wrapper">
+            <div class="courses-grid">
+                <!-- Course Card 1 -->
+                <div class="course-card">
+                    <div class="course-header">
+                        <span>Aerospace Engineering</span>
+                        <span class="enroll-badge">Enroll Now</span>
+                    </div>
+                    <div class="course-body">
+                        <div class="course-title">NOC: Introduction to Launch Vehicle Analysis and Design</div>
+                        <div class="course-category">Aerospace Engineering</div>
+                        <div class="course-instructor">Prof. Ashok Joshi</div>
+                        <div class="course-institute">IIT Bombay</div>
+                    </div>
                 </div>
-                <div class="course-body">
-                    <div class="course-title">NOC:Lighter than Air Systems</div>
-                    <div class="course-category">Aerospace Engineering</div>
-                    <div class="course-instructor">Prof. Rajkumar Pant</div>
-                    <div class="course-institute">IIT Bombay</div>
-                </div>
-            </div>
 
-            <!-- Course Card 3 -->
-            <div class="course-card">
-                <div class="course-header">
-                    <span>Aerospace Engineering</span>
-                    <span class="enroll-badge">Enroll Now</span>
+                <!-- Course Card 2 -->
+                <div class="course-card">
+                    <div class="course-header">
+                        <span>Aerospace Engineering</span>
+                        <span class="enroll-badge">Enroll Now</span>
+                    </div>
+                    <div class="course-body">
+                        <div class="course-title">NOC: Lighter than Air Systems</div>
+                        <div class="course-category">Aerospace Engineering</div>
+                        <div class="course-instructor">Prof. Rajkumar Pant</div>
+                        <div class="course-institute">IIT Bombay</div>
+                    </div>
                 </div>
-                <div class="course-body">
-                    <div class="course-title">NOC:Engineering Thermodynamics</div>
-                    <div class="course-category">Aerospace Engineering</div>
-                    <div class="course-instructor">Prof. D.P. Mishra</div>
-                    <div class="course-institute">IIT Kanpur</div>
-                </div>
-            </div>
 
-            <!-- Course Card 4 -->
-            <div class="course-card">
-                <div class="course-header">
-                    <span>Biotechnology</span>
-                    <span class="enroll-badge">Enroll Now</span>
+                <!-- Course Card 3 -->
+                <div class="course-card">
+                    <div class="course-header">
+                        <span>Aerospace Engineering</span>
+                        <span class="enroll-badge">Enroll Now</span>
+                    </div>
+                    <div class="course-body">
+                        <div class="course-title">NOC: Engineering Thermodynamics</div>
+                        <div class="course-category">Aerospace Engineering</div>
+                        <div class="course-instructor">Prof. D.P. Mishra</div>
+                        <div class="course-institute">IIT Kanpur</div>
+                    </div>
                 </div>
-                <div class="course-body">
-                    <div class="course-title">NOC:Mass spectrometry based proteomics</div>
-                    <div class="course-category">Biotechnology</div>
-                    <div class="course-instructor">Prof. Sanjeeva Srivastava</div>
-                    <div class="course-institute">IIT Bombay</div>
-                </div>
-            </div>
 
-            <!-- Course Card 5 -->
-            <div class="course-card">
-                <div class="course-header">
-                    <span>Biotechnology</span>
-                    <span class="enroll-badge">Enroll Now</span>
+                <!-- Course Card 4 -->
+                <div class="course-card">
+                    <div class="course-header">
+                        <span>Biotechnology</span>
+                        <span class="enroll-badge">Enroll Now</span>
+                    </div>
+                    <div class="course-body">
+                        <div class="course-title">NOC: Mass Spectrometry Based Proteomics</div>
+                        <div class="course-category">Biotechnology</div>
+                        <div class="course-instructor">Prof. Sanjeeva Srivastava</div>
+                        <div class="course-institute">IIT Bombay</div>
+                    </div>
                 </div>
-                <div class="course-body">
-                    <div class="course-title">NOC:Bioengineering: An Interface with Biology and Medicine</div>
-                    <div class="course-category">Biotechnology</div>
-                    <div class="course-instructor">Prof. Sanjeeva Srivastava</div>
-                    <div class="course-institute">IIT Bombay</div>
-                </div>
-            </div>
 
-            <!-- Course Card 6 -->
-            <div class="course-card">
-                <div class="course-header">
-                    <span>Chemical Engineering</span>
-                    <span class="enroll-badge">Enroll Now</span>
+                <!-- Course Card 5 -->
+                <div class="course-card">
+                    <div class="course-header">
+                        <span>Biotechnology</span>
+                        <span class="enroll-badge">Enroll Now</span>
+                    </div>
+                    <div class="course-body">
+                        <div class="course-title">NOC: Bioengineering - Interface with Biology and Medicine</div>
+                        <div class="course-category">Biotechnology</div>
+                        <div class="course-instructor">Prof. Sanjeeva Srivastava</div>
+                        <div class="course-institute">IIT Bombay</div>
+                    </div>
                 </div>
-                <div class="course-body">
-                    <div class="course-title">NOC:Heat transfer</div>
-                    <div class="course-category">Chemical Engineering</div>
-                    <div class="course-instructor">Prof. Ganesh Viswanathan</div>
-                    <div class="course-institute">IIT Bombay</div>
-                </div>
-            </div>
 
-            <!-- Course Card 7 -->
-            <div class="course-card">
-                <div class="course-header">
-                    <span>Chemical Engineering</span>
-                    <span class="enroll-badge">Enroll Now</span>
+                <!-- Course Card 6 -->
+                <div class="course-card">
+                    <div class="course-header">
+                        <span>Chemical Engineering</span>
+                        <span class="enroll-badge">Enroll Now</span>
+                    </div>
+                    <div class="course-body">
+                        <div class="course-title">NOC: Heat Transfer</div>
+                        <div class="course-category">Chemical Engineering</div>
+                        <div class="course-instructor">Prof. Ganesh Viswanathan</div>
+                        <div class="course-institute">IIT Bombay</div>
+                    </div>
                 </div>
-                <div class="course-body">
-                    <div class="course-title">NOC:Multiphase Flows</div>
-                    <div class="course-category">Chemical Engineering</div>
-                    <div class="course-instructor">Prof. Rajesh Kumar Upadhyay</div>
-                    <div class="course-institute">IIT(BHU) Varanasi</div>
-                </div>
-            </div>
 
-            <!-- Course Card 8 -->
-            <div class="course-card">
-                <div class="course-header">
-                    <span>Chemistry</span>
-                    <span class="enroll-badge">Enroll Now</span>
+                <!-- Course Card 7 -->
+                <div class="course-card">
+                    <div class="course-header">
+                        <span>Chemical Engineering</span>
+                        <span class="enroll-badge">Enroll Now</span>
+                    </div>
+                    <div class="course-body">
+                        <div class="course-title">NOC: Multiphase Flows</div>
+                        <div class="course-category">Chemical Engineering</div>
+                        <div class="course-instructor">Prof. Rajesh Kumar Upadhyay</div>
+                        <div class="course-institute">IIT (BHU) Varanasi</div>
+                    </div>
                 </div>
-                <div class="course-body">
-                    <div class="course-title">NOC:Organometallic Chemistry</div>
-                    <div class="course-category">Chemistry and Biochemistry</div>
-                    <div class="course-instructor">Prof. Debabrata Maiti</div>
-                    <div class="course-institute">IIT Bombay</div>
-                </div>
-            </div>
 
-            <!-- Course Card 9 -->
-            <div class="course-card">
-                <div class="course-header">
-                    <span>Civil Engineering</span>
-                    <span class="enroll-badge">Enroll Now</span>
+                <!-- Course Card 8 -->
+                <div class="course-card">
+                    <div class="course-header">
+                        <span>Chemistry</span>
+                        <span class="enroll-badge">Enroll Now</span>
+                    </div>
+                    <div class="course-body">
+                        <div class="course-title">NOC: Organometallic Chemistry</div>
+                        <div class="course-category">Chemistry and Biochemistry</div>
+                        <div class="course-instructor">Prof. Debabrata Maiti</div>
+                        <div class="course-institute">IIT Bombay</div>
+                    </div>
                 </div>
-                <div class="course-body">
-                    <div class="course-title">NOC:Geotechnical Engineering - 1</div>
-                    <div class="course-category">Civil Engineering</div>
-                    <div class="course-instructor">Prof. Devendra Narain Singh</div>
-                    <div class="course-institute">IIT Bombay</div>
-                </div>
-            </div>
 
-            <!-- Course Card 10 -->
-            <div class="course-card">
-                <div class="course-header">
-                    <span>Civil Engineering</span>
-                    <span class="enroll-badge">Enroll Now</span>
+                <!-- Course Card 9 -->
+                <div class="course-card">
+                    <div class="course-header">
+                        <span>Civil Engineering</span>
+                        <span class="enroll-badge">Enroll Now</span>
+                    </div>
+                    <div class="course-body">
+                        <div class="course-title">NOC: Geotechnical Engineering - 1</div>
+                        <div class="course-category">Civil Engineering</div>
+                        <div class="course-instructor">Prof. Devendra Narain Singh</div>
+                        <div class="course-institute">IIT Bombay</div>
+                    </div>
                 </div>
-                <div class="course-body">
-                    <div class="course-title">NOC:Concrete Technology</div>
-                    <div class="course-category">Civil Engineering</div>
-                    <div class="course-instructor">Prof. B. Bhattacharjee</div>
-                    <div class="course-institute">IIT Delhi</div>
-                </div>
-            </div>
 
-            <!-- Course Card 11 -->
-            <div class="course-card">
-                <div class="course-header">
-                    <span>Civil Engineering</span>
-                    <span class="enroll-badge">Enroll Now</span>
+                <!-- Course Card 10 -->
+                <div class="course-card">
+                    <div class="course-header">
+                        <span>Civil Engineering</span>
+                        <span class="enroll-badge">Enroll Now</span>
+                    </div>
+                    <div class="course-body">
+                        <div class="course-title">NOC: Concrete Technology</div>
+                        <div class="course-category">Civil Engineering</div>
+                        <div class="course-instructor">Prof. B. Bhattacharjee</div>
+                        <div class="course-institute">IIT Delhi</div>
+                    </div>
                 </div>
-                <div class="course-body">
-                    <div class="course-title">NOC:Engineering Hydrology</div>
-                    <div class="course-category">Civil Engineering</div>
-                    <div class="course-instructor">Prof. Sreeja Pekkat</div>
-                    <div class="course-institute">IIT Guwahati</div>
-                </div>
-            </div>
 
-            <!-- Course Card 12 -->
-            <div class="course-card">
-                <div class="course-header">
-                    <span>Mechanical Engineering</span>
-                    <span class="enroll-badge">Enroll Now</span>
+                <!-- Course Card 11 -->
+                <div class="course-card">
+                    <div class="course-header">
+                        <span>Civil Engineering</span>
+                        <span class="enroll-badge">Enroll Now</span>
+                    </div>
+                    <div class="course-body">
+                        <div class="course-title">NOC: Engineering Hydrology</div>
+                        <div class="course-category">Civil Engineering</div>
+                        <div class="course-instructor">Prof. Sreeja Pekkat</div>
+                        <div class="course-institute">IIT Guwahati</div>
+                    </div>
                 </div>
-                <div class="course-body">
-                    <div class="course-title">NOC:Thermodynamics</div>
-                    <div class="course-category">Mechanical Engineering</div>
-                    <div class="course-instructor">Prof. S.K. Som</div>
-                    <div class="course-institute">IIT Kharagpur</div>
+
+                <!-- Course Card 12 -->
+                <div class="course-card">
+                    <div class="course-header">
+                        <span>Mechanical Engineering</span>
+                        <span class="enroll-badge">Enroll Now</span>
+                    </div>
+                    <div class="course-body">
+                        <div class="course-title">NOC: Thermodynamics</div>
+                        <div class="course-category">Mechanical Engineering</div>
+                        <div class="course-instructor">Prof. S.K. Som</div>
+                        <div class="course-institute">IIT Kharagpur</div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-     <div class="partners-section">
+
+        <section class="partners">
             <h2>Participating Institutions</h2>
             <div class="partners-grid">
-                <a href="https://www.iitb.ac.in/" target="_blank" class="partner-link">
-                    <div class="partner-box"><img src="https://upload.wikimedia.org/wikipedia/en/1/1d/Indian_Institute_of_Technology_Bombay_Logo.svg" alt="IITB"><span>IIT BOMBAY</span></div>
+                <a href="https://www.iitb.ac.in/" target="_blank" rel="noopener" class="partner">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/1/1d/Indian_Institute_of_Technology_Bombay_Logo.svg" alt="IIT Bombay">
+                    <span>IIT Bombay</span>
                 </a>
-                <a href="https://home.iitd.ac.in/" target="_blank" class="partner-link">
-                    <div class="partner-box"><img src="https://upload.wikimedia.org/wikipedia/en/f/fd/Indian_Institute_of_Technology_Delhi_Logo.svg" alt="IITD"><span>IIT DELHI</span></div>
+                <a href="https://home.iitd.ac.in/" target="_blank" rel="noopener" class="partner">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/f/fd/Indian_Institute_of_Technology_Delhi_Logo.svg" alt="IIT Delhi">
+                    <span>IIT Delhi</span>
                 </a>
-                <a href="https://www.iitk.ac.in/" target="_blank" class="partner-link">
-                    <div class="partner-box"><img src="https://upload.wikimedia.org/wikipedia/en/a/a3/IIT_Kanpur_Logo.svg" alt="IITK"><span>IIT KANPUR</span></div>
+                <a href="https://www.iitk.ac.in/" target="_blank" rel="noopener" class="partner">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/a/a3/IIT_Kanpur_Logo.svg" alt="IIT Kanpur">
+                    <span>IIT Kanpur</span>
                 </a>
-                <a href="http://www.iitkgp.ac.in/" target="_blank" class="partner-link">
-                    <div class="partner-box"><img src="https://upload.wikimedia.org/wikipedia/en/1/1c/IIT_Kharagpur_Logo.svg" alt="IITKGP"><span>IIT KHARAGPUR</span></div>
+                <a href="http://www.iitkgp.ac.in/" target="_blank" rel="noopener" class="partner">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/1/1c/IIT_Kharagpur_Logo.svg" alt="IIT Kharagpur">
+                    <span>IIT Kharagpur</span>
                 </a>
-                <a href="https://www.iitm.ac.in/" target="_blank" class="partner-link">
-                    <div class="partner-box"><img src="https://upload.wikimedia.org/wikipedia/en/6/69/IIT_Madras_Logo.svg" alt="IITM"><span>IIT MADRAS</span></div>
+                <a href="https://www.iitm.ac.in/" target="_blank" rel="noopener" class="partner">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/6/69/IIT_Madras_Logo.svg" alt="IIT Madras">
+                    <span>IIT Madras</span>
                 </a>
-                <a href="https://www.iitg.ac.in/" target="_blank" class="partner-link">
-                    <div class="partner-box"><img src="https://upload.wikimedia.org/wikipedia/en/1/12/IIT_Guwahati_Logo.svg" alt="IITG"><span>IIT GUWAHATI</span></div>
+                <a href="https://www.iitg.ac.in/" target="_blank" rel="noopener" class="partner">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/1/12/IIT_Guwahati_Logo.svg" alt="IIT Guwahati">
+                    <span>IIT Guwahati</span>
                 </a>
-                <a href="https://www.iitr.ac.in/" target="_blank" class="partner-link">
-                    <div class="partner-box"><img src="https://upload.wikimedia.org/wikipedia/en/c/cc/Indian_Institute_of_Technology_Roorkee_logo.svg" alt="IITR"><span>IIT ROORKEE</span></div>
+                <a href="https://www.iitr.ac.in/" target="_blank" rel="noopener" class="partner">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/c/cc/Indian_Institute_of_Technology_Roorkee_logo.svg" alt="IIT Roorkee">
+                    <span>IIT Roorkee</span>
                 </a>
-                <a href="https://iisc.ac.in/" target="_blank" class="partner-link">
-                    <div class="partner-box"><img src="https://upload.wikimedia.org/wikipedia/en/1/10/Indian_Institute_of_Science_logo.svg" alt="IISC"><span>IISC BANGALORE</span></div>
+                <a href="https://iisc.ac.in/" target="_blank" rel="noopener" class="partner">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/1/10/Indian_Institute_of_Science_logo.svg" alt="IISc Bangalore">
+                    <span>IISc Bangalore</span>
                 </a>
             </div>
-        </div>
+        </section>
+    </main>
 
     <footer class="footer">
-        <div class="footer-inner">
-            <div class="footer-columns">
-                <div class="footer-col">
-                    <h4>ABOUT NPTEL</h4>
-                    <ul>
-                        <li><a href="#">Vision & Mission</a></li>
-                        <li><a href="#">Participating Institutes</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>RESOURCES</h4>
-                    <ul>
-                        <li><a href="#">Course Catalog</a></li>
-                        <li><a href="#">Exam Registration</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>CONTACT US</h4>
-                    <p style="font-size: 13px; color: #ccc;">IC & SR, 3rd Floor, IIT Madras<br>Chennai - 600036<br>support@nptel.iitm.ac.in</p>
-                </div>
+        <div class="footer-content">
+            <div class="footer-col">
+                <h4>About NPTEL</h4>
+                <ul>
+                    <li><a href="#">Vision & Mission</a></li>
+                    <li><a href="#">Participating Institutes</a></li>
+                    <li><a href="#">Annual Reports</a></li>
+                </ul>
             </div>
-            <div class="footer-bottom">
-                <p>© 2026 NPTEL - National Programme on Technology Enhanced Learning</p>
+            <div class="footer-col">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="#">Course Catalog</a></li>
+                    <li><a href="#">Exam Registration</a></li>
+                    <li><a href="#">Help Center</a></li>
+                </ul>
             </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <p style="font-size: 14px; line-height: 1.8;">
+                    NPTEL Administrator<br>
+                    IIT Madras, Chennai - 600036<br>
+                    <a href="mailto:support@nptel.iitm.ac.in" style="color: var(--accent-gold);">support@nptel.iitm.ac.in</a>
+                </p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 NPTEL | Empowering Education Through Technology</p>
         </div>
     </footer>
 
