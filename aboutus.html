@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Learn about NPTEL - India's largest online repository of courses in engineering, sciences, and humanities.">
+    <title>About NPTEL | Technology Enhanced Learning</title>
+    <style>
+        :root {
+            --primary-blue: #0047AB;
+            --deep-blue: #002855;
+            --accent-gold: #FFC107;
+            --bright-gold: #FFD700;
+            --white: #FFFFFF;
+            --light: #F8F9FA;
+            --gray-100: #F1F3F5;
+            --gray-200: #E9ECEF;
+            --gray-600: #6C757D;
+            --gray-800: #343A40;
+            --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.08);
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);
+            --shadow-xl: 0 12px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: var(--white);
+            color: var(--gray-800);
+            line-height: 1.6;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--deep-blue) 0%, var(--primary-blue) 100%);
+            padding: 12px 0;
+            box-shadow: var(--shadow-md);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            padding: 0 30px;
+            gap: 25px;
+        }
+        
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-rotating {
+            width: 64px;
+            height: 64px;
+            animation: spin 10s linear infinite;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid var(--accent-gold);
+            flex-shrink: 0;
+        }
+
+        @keyframes spin { 
+            100% { transform: rotate(360deg); } 
+        }
+
+        .logo-rotating video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .brand-text h1 { 
+            color: var(--white); 
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .brand-text p { 
+            color: rgba(255, 255, 255, 0.85); 
+            font-size: 11px;
+        }
+        
+        .header-right { 
+            margin-left: auto;
+            display: flex; 
+            gap: 12px;
+            align-items: center;
+        }
+
+        #userStatus {
+            color: var(--accent-gold);
+            font-weight: 600;
+            font-size: 14px;
+        }
+        
+        .btn-header {
+            background: var(--accent-gold);
+            color: var(--deep-blue);
+            border: none;
+            padding: 10px 24px;
+            font-size: 13px;
+            cursor: pointer;
+            font-weight: 600;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-header:hover {
+            background: var(--bright-gold);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 193, 7, 0.4);
+        }
+
+        .btn-header.logout {
+            background: var(--white);
+            color: var(--deep-blue);
+        }
+
+        /* Navigation */
+        .navbar {
+            background: var(--white);
+            border-bottom: 1px solid var(--gray-200);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .navbar ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+        
+        .navbar a {
+            display: block;
+            color: var(--gray-800);
+            text-decoration: none;
+            padding: 18px 30px;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .navbar a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 3px;
+            background: var(--primary-blue);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+        
+        .navbar a:hover {
+            color: var(--primary-blue);
+        }
+
+        .navbar a:hover::after {
+            width: 70%;
+        }
+
+        .navbar a.active { 
+            color: var(--primary-blue);
+            font-weight: 700;
+        }
+
+        .navbar a.active::after {
+            width: 70%;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            padding: 80px 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            color: var(--white);
+            margin-bottom: 20px;
+            font-weight: 800;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero p {
+            color: rgba(255, 255, 255, 0.95);
+            font-size: clamp(16px, 2.5vw, 18px);
+            line-height: 1.8;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Content Wrapper */
+        .content-wrapper {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 60px 30px;
+            flex: 1;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .stat-card {
+            background: var(--white);
+            border: 2px solid var(--gray-200);
+            border-radius: 16px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: all 0.4s ease;
+            box-shadow: var(--shadow-sm);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--accent-gold));
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-gold);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .stat-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .stat-card h3 {
+            font-size: 48px;
+            color: var(--primary-blue);
+            margin-bottom: 12px;
+            font-weight: 800;
+        }
+        
+        .stat-card p {
+            font-size: 16px;
+            color: var(--gray-600);
+            font-weight: 600;
+        }
+
+        /* Content Section */
+        .content-section {
+            background: var(--light);
+            padding: 50px 40px;
+            border-radius: 20px;
+            margin-bottom: 40px;
+            border-left: 6px solid var(--primary-blue);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .content-section h2 {
+            color: var(--primary-blue);
+            font-size: clamp(28px, 4vw, 36px);
+            margin-bottom: 25px;
+            font-weight: 700;
+        }
+        
+        .content-section ul {
+            margin-left: 30px;
+            margin-top: 20px;
+        }
+        
+        .content-section li {
+            color: var(--gray-700);
+            line-height: 1.9;
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+
+        .content-section li strong {
+            color: var(--primary-blue);
+        }
+
+        /* Highlight Box */
+        .highlight-box {
+            background: linear-gradient(135deg, var(--white) 0%, var(--light) 100%);
+            border: 3px solid var(--accent-gold);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 40px 0;
+            text-align: center;
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .highlight-box h3 {
+            color: var(--primary-blue);
+            font-size: 28px;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .highlight-number {
+            font-size: 64px;
+            color: var(--primary-blue);
+            font-weight: 800;
+            margin: 20px 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Certification Process */
+        .certification-section {
+            background: var(--light);
+            padding: 50px 40px;
+            border-radius: 20px;
+            margin: 40px 0;
+        }
+
+        .certification-section h2 {
+            color: var(--primary-blue);
+            font-size: clamp(28px, 4vw, 36px);
+            margin-bottom: 15px;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .certification-section > p {
+            text-align: center;
+            color: var(--gray-600);
+            margin-bottom: 40px;
+            font-size: 16px;
+        }
+        
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .process-step {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 30px;
+            text-align: center;
+            border: 2px solid var(--gray-200);
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .process-step:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent-gold);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--deep-blue));
+            color: var(--accent-gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            font-weight: 800;
+            margin: 0 auto 20px;
+            box-shadow: var(--shadow-md);
+        }
+        
+        .process-step h5 {
+            color: var(--primary-blue);
+            font-size: 18px;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+        
+        .process-step p {
+            color: var(--gray-600);
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .feature-card {
+            background: var(--white);
+            border: 2px solid var(--gray-200);
+            border-radius: 16px;
+            padding: 30px;
+            transition: all 0.4s ease;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--accent-gold);
+        }
+        
+        .feature-card h4 {
+            color: var(--primary-blue);
+            font-size: 20px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+        }
+        
+        .feature-icon {
+            font-size: 32px;
+        }
+        
+        .feature-card p {
+            color: var(--gray-600);
+            line-height: 1.7;
+            font-size: 15px;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary-blue), var(--deep-blue));
+            color: var(--white);
+            padding: 60px 40px;
+            border-radius: 20px;
+            text-align: center;
+            margin: 60px 0;
+            box-shadow: var(--shadow-xl);
+        }
+        
+        .cta-section h2 {
+            color: var(--accent-gold);
+            font-size: clamp(28px, 4vw, 40px);
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+        
+        .cta-section p {
+            font-size: 18px;
+            margin-bottom: 35px;
+            opacity: 0.95;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .cta-button {
+            background: var(--accent-gold);
+            color: var(--deep-blue);
+            border: none;
+            padding: 16px 40px;
+            font-size: 16px;
+            font-weight: 700;
+            border-radius: 30px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .cta-button:hover {
+            background: var(--white);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 193, 7, 0.4);
+        }
+
+        /* Partners */
+        .partners {
+            background: var(--light);
+            padding: 60px 30px;
+            border-top: 1px solid var(--gray-200);
+        }
+
+        .partners h2 {
+            text-align: center;
+            font-size: clamp(28px, 4vw, 36px);
+            color: var(--primary-blue);
+            margin-bottom: 50px;
+            font-weight: 700;
+        }
+
+        .partners-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 25px;
+        }
+
+        .partner {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 25px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            border: 2px solid var(--gray-200);
+        }
+        
+        .partner:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--accent-gold);
+        }
+
+        .partner img {
+            width: 55px;
+            height: 55px;
+            object-fit: contain;
+            filter: grayscale(100%);
+            transition: filter 0.3s ease;
+        }
+
+        .partner:hover img {
+            filter: grayscale(0%);
+        }
+
+        .partner span { 
+            font-size: 11px; 
+            font-weight: 700; 
+            color: var(--gray-800);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--deep-blue);
+            color: rgba(255, 255, 255, 0.8);
+            padding: 50px 30px 25px;
+            border-top: 4px solid var(--accent-gold);
+            margin-top: auto;
+        }
+        
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-col h4 {
+            color: var(--accent-gold);
+            margin-bottom: 20px;
+            font-size: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
+        }
+        
+        .footer-col ul { 
+            list-style: none; 
+        }
+
+        .footer-col li { 
+            margin-bottom: 10px; 
+        }
+
+        .footer-col a { 
+            color: rgba(255, 255, 255, 0.7); 
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .footer-col a:hover { 
+            color: var(--white);
+            padding-left: 5px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.5);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .header-inner {
+                padding: 0 20px;
+            }
+
+            .navbar ul {
+                flex-wrap: wrap;
+                padding: 0 20px;
+            }
+
+            .navbar a {
+                padding: 15px 20px;
+                font-size: 13px;
+            }
+
+            .stats-grid,
+            .process-steps,
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .brand-text p {
+                display: none;
+            }
+
+            .header-right {
+                flex-wrap: wrap;
+                gap: 8px;
+            }
+
+            .btn-header {
+                padding: 8px 16px;
+                font-size: 11px;
+            }
+
+            .navbar ul {
+                flex-direction: column;
+            }
+
+            .navbar a {
+                text-align: center;
+                border-bottom: 1px solid var(--gray-200);
+            }
+
+            .partners-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .stat-card,
+        .feature-card,
+        .process-step {
+            animation: fadeIn 0.6s ease backwards;
+        }
+
+        .stat-card:nth-child(1) { animation-delay: 0.1s; }
+        .stat-card:nth-child(2) { animation-delay: 0.2s; }
+        .stat-card:nth-child(3) { animation-delay: 0.3s; }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-inner">
+            <div class="logo-section">
+                <div class="logo-rotating">
+                    <video autoplay loop muted playsinline>
+                        <source src="videoExport-2026-01-03@10-42-33.525-540x540@60fps.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="brand-text">
+                    <h1>NPTEL</h1>
+                    <p>National Programme on Technology Enhanced Learning</p>
+                </div>
+            </div>
+            <div class="header-right">
+                <span id="userStatus">Hello, user123</span>
+                <button class="btn-header" onclick="alert('Contact Us')">
+                    Contact
+                </button>
+                <button class="btn-header">
+                    Search
+                </button>
+                <button class="btn-header logout" onclick="logout()">
+                    Logout
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <nav class="navbar">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="courses.html">Courses</a></li>
+            <li><a href="initiatives.html">Initiatives</a></li>
+            <li><a href="exams.html">Exams</a></li>
+            <li><a href="about.html" class="active">About</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>About NPTEL</h1>
+                <p>NPTEL (National Programme on Technology Enhanced Learning) is a joint venture of the IITs and IISc, funded by the Ministry of Education (MoE) Government of India, and was launched in 2003. Initially started as a project to take quality education to all corners of the country, NPTEL now offers close to 600+ courses for certification every semester in about 22 disciplines.</p>
+            </div>
+        </section>
+
+        <div class="content-wrapper">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3>3496+</h3>
+                    <p>Completed Courses</p>
+                </div>
+                <div class="stat-card">
+                    <h3>1.58 Cr+</h3>
+                    <p>Total Enrollments</p>
+                </div>
+                <div class="stat-card">
+                    <h3>15.1 L+</h3>
+                    <p>Exam Registrations</p>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2>🌟 Some Highlights</h2>
+                <ul>
+                    <li><strong>Largest online repository</strong> in the world of courses in engineering, basic sciences and selected humanities and management subjects</li>
+                    <li><strong>YouTube channel for NPTEL</strong> – most subscribed educational channel, 1.3 billion views and 40+ lakhs subscribers</li>
+                    <li>More than <strong>70000 hours of video content</strong>, transcribed and subtitled</li>
+                    <li>Most accessed library of <strong>peer-reviewed educational content</strong> in the world</li>
+                    <li>Translation of more than <strong>12000 hrs of English transcripts</strong> in regional Indian languages</li>
+                </ul>
+            </div>
+
+            <div class="highlight-box">
+                <h3>📊 Total Students Registered</h3>
+                <div class="highlight-number">16,008,172+</div>
+            </div>
+
+            <div class="content-section">
+                <h2>💡 NPTEL MOOCs - Massive Open Online Courses</h2>
+                <p style="color: var(--gray-700); font-size: 16px; margin-bottom: 20px;">NPTEL began offering open online courses in March 2014. It is now possible for ANYONE outside the IIT System to be able to do an online certification course from NPTEL and get a certificate from the IITs. IITs are reaching out and taking education to the homes of people through this initiative.</p>
+               
+                <h3 style="color: var(--primary-blue); font-size: 24px; margin-top: 30px; margin-bottom: 15px; font-weight: 700;">Why Open Online Courses?</h3>
+                <p style="color: var(--gray-700); font-size: 15px; line-height: 1.8;">Massive Open Online Courses (MOOC) is essentially an asynchronous teaching-learning platform, where the process involves use of pre-recorded lectures, resource video materials, lecture notes, assignments and quizzes, as content and self assessment at regular intervals.</p>
+               
+                <p style="color: var(--gray-700); font-size: 15px; line-height: 1.8; margin-top: 15px;">When offered with consideration for students in non-urban and rural areas through supplementary DVDs and mobile delivered content, they enable quality and equitable access to a much larger population of students and can lead to a significant rise in the Gross Enrollment Ratio.</p>
+            </div>
+
+            <div class="certification-section">
+                <h2>📜 Certification Process</h2>
+                <p>How NPTEL certification works - from enrollment to certificate</p>
+               
+                <div class="process-steps">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <h5>Course Creation</h5>
+                        <p>Expert faculty from IITs/IISc create high-quality video content</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <h5>Free Enrollment</h5>
+                        <p>Courses uploaded on portal, open for free enrollment to all</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">3</div>
+                        <h5>Weekly Content</h5>
+                        <p>~3 hrs of video + assignments released each week</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">4</div>
+                        <h5>Support System</h5>
+                        <p>TAs and faculty answer questions in discussion forums</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">5</div>
+                        <h5>Proctored Exam</h5>
+                        <p>In-person certification exam in 170+ cities (Rs 1000 fee)</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">6</div>
+                        <h5>Get Certified</h5>
+                        <p>Pass criteria: Avg assignment ≥40% AND Final exam ≥40%</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2>🎯 Why Should Learners Do NPTEL Courses?</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h4><span class="feature-icon">🎓</span> Best Faculty</h4>
+                        <p>Learn directly from the best professors in India, strengthening your fundamentals</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4><span class="feature-icon">🔍</span> Explore New Areas</h4>
+                        <p>Opportunities to explore subjects not available in regular college environment</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4><span class="feature-icon">📈</span> Career Growth</h4>
+                        <p>Faculty can use these courses for career progression and professional development</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4><span class="feature-icon">👥</span> Peer Learning</h4>
+                        <p>Learn alongside students from across India, assess your standing nationally</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4><span class="feature-icon">💪</span> Self-Learning</h4>
+                        <p>Develops self-study habits and motivation to keep yourself updated always</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4><span class="feature-icon">📜</span> Valuable Certificates</h4>
+                        <p>IIT/IISc certificates are valuable additions when applying for jobs</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="highlight-box">
+                <h3>🏆 Credit Transfer from SWAYAM Courses</h3>
+                <p style="margin-top: 20px; color: var(--gray-700); font-size: 16px;">UGC and AICTE have issued guidelines whereby upto <strong style="color: var(--primary-blue); font-size: 20px;">40% of course credits</strong> can be obtained by taking courses on SWAYAM.</p>
+                <p style="margin-top: 15px; font-size: 15px;">For more details visit: <a href="https://swayam.gov.in/nc_details/NPTEL" target="_blank" style="color: var(--primary-blue); font-weight: bold; text-decoration: none;">SWAYAM NPTEL</a></p>
+            </div>
+
+            <div class="content-section">
+                <h2>🤝 Other Key Initiatives</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h4><span class="feature-icon">🏫</span> NPTEL Local Chapters</h4>
+                        <p>Partnership with 4500+ colleges to maximize NPTEL reach and impact</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4><span class="feature-icon">💼</span> Internship Program</h4>
+                        <p>Internships offered to NOC exam toppers with respective course faculty</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4><span class="feature-icon">🎪</span> Workshops</h4>
+                        <p>Creating awareness about NPTEL and its various initiatives nationwide</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4><span class="feature-icon">🎥</span> Live Sessions</h4>
+                        <p>Interactive sessions with faculty for learners to clarify doubts</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4><span class="feature-icon">🏢</span> Industry Associates</h4>
+                        <p>Partnership with organizations for training and upskilling workforce</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4><span class="feature-icon">👨‍🏫</span> Faculty Development</h4>
+                        <p>AICTE-approved FDP courses for faculty career advancement</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cta-section">
+                <h2>Ready to Start Your Learning Journey?</h2>
+                <p>Join millions of learners and get certified from India's top institutions</p>
+                <div class="cta-buttons">
+                    <a href="courses.html" class="cta-button">Browse Courses</a>
+                    <a href="exams.html" class="cta-button">Exam Information</a>
+                    <a href="#" class="cta-button" onclick="alert('Opening registration portal...'); return false;">Register Now</a>
+                </div>
+            </div>
+        </div>
+
+        <section class="partners">
+            <h2>Participating Institutions</h2>
+            <div class="partners-grid">
+                <a href="https://www.iitb.ac.in/" target="_blank" rel="noopener" class="partner">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/1/1d/Indian_Institute_of_Technology_Bombay_Logo.svg" alt="IIT Bombay">
+                    <span>IIT Bombay</span>
+                </a>
+                <a href="https://home.iitd.ac.in/" target="_blank" rel="noopener" class="partner">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/f/fd/Indian_Institute_of_Technology_Delhi_Logo.svg" alt="IIT Delhi">
+                    <span>IIT Delhi</span>
+                </a>
+                <a href="https://www.iitk.ac.in/" target="_blank" rel="noopener" class="partner">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/a/a3/IIT_Kanpur_Logo.svg" alt="IIT Kanpur">
+                    <span>IIT Kanpur</span>
+                </a>
+                <a href="http://www.iitkgp.ac.in/" target="_blank" rel="noopener" class="partner">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/1/1c/IIT_Kharagpur_Logo.svg" alt="IIT Kharagpur">
+                    <span>IIT Kharagpur</span>
+                </a>
+                <a href="https://www.iitm.ac.in/" target="_blank" rel="noopener" class="partner">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/6/69/IIT_Madras_Logo.svg" alt="IIT Madras">
+                    <span>IIT Madras</span>
+                </a>
+                <a href="https://www.iitg.ac.in/" target="_blank" rel="noopener" class="partner">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/1/12/IIT_Guwahati_Logo.svg" alt="IIT Guwahati">
+                    <span>IIT Guwahati</span>
+                </a>
+                <a href="https://www.iitr.ac.in/" target="_blank" rel="noopener" class="partner">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/c/cc/Indian_Institute_of_Technology_Roorkee_logo.svg" alt="IIT Roorkee">
+                    <span>IIT Roorkee</span>
+                </a>
+                <a href="https://iisc.ac.in/" target="_blank" rel="noopener" class="partner">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/1/10/Indian_Institute_of_Science_logo.svg" alt="IISc Bangalore">
+                    <span>IISc Bangalore</span>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-col">
+                <h4>About NPTEL</h4>
+                <ul>
+                    <li><a href="about.html">Vision & Mission</a></li>
+                    <li><a href="#">Participating Institutes</a></li>
+                    <li><a href="#">Annual Reports</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="courses.html">Course Catalog</a></li>
+                    <li><a href="exams.html">Exam Registration</a></li>
+                    <li><a href="#">Help Center</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <p style="font-size: 14px; line-height: 1.8;">
+                    NPTEL Administrator<br>
+                    IIT Madras, Chennai - 600036<br>
+                    <a href="mailto:support@nptel.iitm.ac.in" style="color: var(--accent-gold);">support@nptel.iitm.ac.in</a>
+                </p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 NPTEL | Empowering Education Through Technology</p>
+        </div>
+    </footer>
+
+    <script>
+        // Check if user is logged in
+        function checkLogin() {
+            const isLoggedIn = sessionStorage.getItem('nptelLoggedIn');
+            if (!isLoggedIn) {
+                window.location.href = 'index.html';
+            }
+        }
+
+        // Logout function
+        function logout() {
+            sessionStorage.removeItem('nptelLoggedIn');
+            alert('You have been logged out successfully.');
+            window.location.href = 'index.html';
+        }
+
+        // Check login status on page load
+        checkLogin();
+    </script>
+</body>
+</html>

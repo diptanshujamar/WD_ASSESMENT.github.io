@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="NPTEL - National Programme on Technology Enhanced Learning. Access 3200+ courses from IITs and IISc.">
+    <title>NPTEL | Technology Enhanced Learning</title>
+    <style>
+        :root {
+            --primary-blue: #0047AB;
+            --deep-blue: #002855;
+            --accent-gold: #FFC107;
+            --bright-gold: #FFD700;
+            --white: #FFFFFF;
+            --light: #F8F9FA;
+            --gray-100: #F1F3F5;
+            --gray-200: #E9ECEF;
+            --gray-600: #6C757D;
+            --gray-800: #343A40;
+            --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.08);
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);
+            --shadow-xl: 0 12px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+            height: 100%;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: var(--white);
+            color: var(--gray-800);
+            line-height: 1.6;
+            overflow-x: hidden;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Loading Screen */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--deep-blue) 0%, var(--primary-blue) 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 999999;
+            transition: opacity 0.8s ease-in-out, visibility 0.8s;
+        }
+        
+        .loading-overlay.hide {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+        
+        .loader-logo {
+            width: 200px;
+            height: 200px;
+            margin-bottom: 30px;
+            animation: spin 3s linear infinite;
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(255, 193, 7, 0.4);
+            border: 4px solid var(--accent-gold);
+        }
+        
+        .loader-logo video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        @keyframes spin {
+            100% { transform: rotate(360deg); }
+        }
+        
+        .loader-text {
+            font-size: 48px;
+            font-weight: 800;
+            color: var(--white);
+            text-align: center;
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+        }
+        
+        .loader-subtext {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.9);
+            margin-top: 10px;
+            text-align: center;
+            font-weight: 400;
+            opacity: 0;
+            animation: fadeInSlow 2s ease-in forwards;
+        }
+
+        .access-warning {
+            margin-top: 40px;
+            padding: 20px 35px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid var(--accent-gold);
+            color: var(--white);
+            font-weight: 600;
+            border-radius: 12px;
+            text-align: center;
+            font-size: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-gate {
+            margin-top: 25px;
+            background: var(--accent-gold);
+            color: var(--deep-blue);
+            border: none;
+            padding: 14px 40px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-gate:hover {
+            background: var(--bright-gold);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 193, 7, 0.4);
+        }
+
+        @keyframes fadeInSlow {
+            0% { opacity: 0; transform: translateY(10px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Main Content */
+        .main-wrapper {
+            opacity: 0;
+            filter: blur(15px);
+            transition: opacity 0.8s, filter 0.8s;
+            pointer-events: none;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        
+        .main-wrapper.show {
+            opacity: 1;
+            filter: blur(0);
+            pointer-events: auto;
+        }
+
+        /* Header - Compact & Modern */
+        .header {
+            background: linear-gradient(135deg, var(--deep-blue) 0%, var(--primary-blue) 100%);
+            padding: 12px 0;
+            box-shadow: var(--shadow-md);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            padding: 0 30px;
+            gap: 25px;
+        }
+        
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-rotating {
+            width: 64px;
+            height: 64px;
+            animation: spinSlow 10s linear infinite;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid var(--accent-gold);
+            flex-shrink: 0;
+        }
+
+        @keyframes spinSlow { 
+            100% { transform: rotate(360deg); } 
+        }
+
+        .logo-rotating video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .brand-text h1 { 
+            color: var(--white); 
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .brand-text p { 
+            color: rgba(255, 255, 255, 0.85); 
+            font-size: 11px;
+        }
+        
+        .header-right { 
+            margin-left: auto;
+            display: flex; 
+            gap: 12px;
+            align-items: center;
+        }
+
+        #userStatus {
+            color: var(--accent-gold);
+            font-weight: 600;
+            display: none;
+            font-size: 14px;
+        }
+        
+        .btn-header {
+            background: var(--accent-gold);
+            color: var(--deep-blue);
+            border: none;
+            padding: 10px 24px;
+            font-size: 13px;
+            cursor: pointer;
+            font-weight: 600;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-header:hover {
+            background: var(--bright-gold);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 193, 7, 0.4);
+        }
+
+        .btn-header.logout {
+            background: var(--white);
+            color: var(--deep-blue);
+        }
+
+        .btn-header.logout:hover {
+            background: var(--gray-100);
+        }
+
+        /* Navigation - Sleek */
+        .navbar {
+            background: var(--white);
+            border-bottom: 1px solid var(--gray-200);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .navbar ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+        
+        .navbar a {
+            display: block;
+            color: var(--gray-800);
+            text-decoration: none;
+            padding: 18px 30px;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .navbar a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 3px;
+            background: var(--primary-blue);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+        
+        .navbar a:hover {
+            color: var(--primary-blue);
+        }
+
+        .navbar a:hover::after {
+            width: 70%;
+        }
+
+        .navbar a.active { 
+            color: var(--primary-blue);
+            font-weight: 700;
+        }
+
+        .navbar a.active::after {
+            width: 70%;
+        }
+
+        /* Hero Slideshow */
+        .hero-slideshow {
+            position: relative;
+            height: 500px;
+            overflow: hidden;
+            background: var(--gray-800);
+        }
+        
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.7);
+        }
+        
+        .slide-overlay {
+            position: absolute;
+            bottom: 60px;
+            left: 60px;
+            background: rgba(0, 71, 171, 0.95);
+            color: var(--white);
+            padding: 30px 40px;
+            font-size: 36px;
+            font-weight: 800;
+            border-left: 6px solid var(--accent-gold);
+            border-radius: 8px;
+            box-shadow: var(--shadow-xl);
+            max-width: 600px;
+        }
+        
+        .slide-dots {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 12px;
+            z-index: 10;
+        }
+        
+        .dot {
+            width: 12px;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .dot:hover {
+            background: rgba(255, 255, 255, 0.8);
+            transform: scale(1.2);
+        }
+
+        .dot.active {
+            background: var(--accent-gold);
+            width: 30px;
+            border-radius: 6px;
+        }
+
+        /* Stats Section */
+        .stats-section {
+            max-width: 1400px;
+            margin: -50px auto 60px;
+            padding: 0 30px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .stat-box {
+            background: var(--white);
+            border: 2px solid var(--gray-200);
+            padding: 35px 30px;
+            text-align: center;
+            border-radius: 16px;
+            box-shadow: var(--shadow-lg);
+            transition: all 0.3s ease;
+        }
+
+        .stat-box:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent-gold);
+            box-shadow: var(--shadow-xl);
+        }
+        
+        .stat-box h3 {
+            font-size: 42px;
+            color: var(--primary-blue);
+            margin-bottom: 8px;
+            font-weight: 800;
+        }
+
+        .stat-box p {
+            color: var(--gray-600);
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        /* Featured Videos Section */
+        .featured-videos {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            padding: 80px 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .featured-videos::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .featured-videos h2 {
+            color: var(--white);
+            font-size: clamp(28px, 4vw, 42px);
+            text-align: center;
+            margin-bottom: 60px;
+            font-weight: 800;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 1;
+        }
+
+        .videos-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .video-card {
+            background: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-xl);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+        }
+
+        .video-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .video-thumbnail {
+            position: relative;
+            width: 100%;
+            height: 280px;
+            overflow: hidden;
+            background: var(--gray-800);
+        }
+
+        .video-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .video-card:hover .video-thumbnail img {
+            transform: scale(1.15);
+        }
+
+        .play-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.4s ease;
+        }
+
+        .video-card:hover .play-overlay {
+            background: rgba(0, 71, 171, 0.8);
+        }
+
+        .play-button {
+            width: 80px;
+            height: 80px;
+            background: var(--accent-gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.4s ease;
+            box-shadow: 0 4px 20px rgba(255, 193, 7, 0.6);
+        }
+
+        .video-card:hover .play-button {
+            transform: scale(1.25);
+            background: var(--white);
+        }
+
+        .play-button::after {
+            content: '';
+            width: 0;
+            height: 0;
+            border-left: 25px solid var(--deep-blue);
+            border-top: 15px solid transparent;
+            border-bottom: 15px solid transparent;
+            margin-left: 5px;
+        }
+
+        .video-info {
+            padding: 30px;
+        }
+
+        .video-info h3 {
+            color: var(--primary-blue);
+            font-size: 22px;
+            margin-bottom: 15px;
+            line-height: 1.4;
+            font-weight: 700;
+        }
+
+        .video-info p {
+            color: var(--gray-600);
+            font-size: 15px;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .video-badge {
+            display: inline-block;
+            background: var(--accent-gold);
+            color: var(--deep-blue);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .video-meta {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding-top: 20px;
+            border-top: 1px solid var(--gray-200);
+            margin-top: 15px;
+        }
+
+        .video-meta span {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--gray-600);
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        /* Partners - Minimal & Clean */
+        .partners {
+            background: var(--light);
+            padding: 60px 30px;
+            border-top: 1px solid var(--gray-200);
+        }
+
+        .partners h2 {
+            text-align: center;
+            font-size: clamp(28px, 4vw, 36px);
+            color: var(--primary-blue);
+            margin-bottom: 50px;
+            font-weight: 700;
+        }
+
+        .partners-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 25px;
+        }
+
+        .partner {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 25px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            border: 2px solid var(--gray-200);
+        }
+        
+        .partner:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--accent-gold);
+        }
+
+        .partner img {
+            width: 55px;
+            height: 55px;
+            object-fit: contain;
+            filter: grayscale(100%);
+            transition: filter 0.3s ease;
+        }
+
+        .partner:hover img {
+            filter: grayscale(0%);
+        }
+
+        .partner span { 
+            font-size: 11px; 
+            font-weight: 700; 
+            color: var(--gray-800);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Footer - Compact */
+        .footer {
+            background: var(--deep-blue);
+            color: rgba(255, 255, 255, 0.8);
+            padding: 50px 30px 25px;
+            border-top: 4px solid var(--accent-gold);
+            margin-top: auto;
+        }
+        
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-col h4 {
+            color: var(--accent-gold);
+            margin-bottom: 20px;
+            font-size: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
+        }
+        
+        .footer-col ul { 
+            list-style: none; 
+        }
+
+        .footer-col li { 
+            margin-bottom: 10px; 
+        }
+
+        .footer-col a { 
+            color: rgba(255, 255, 255, 0.7); 
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .footer-col a:hover { 
+            color: var(--white);
+            padding-left: 5px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.5);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+        }
+
+      
+        @media (max-width: 968px) {
+            .header-inner {
+                padding: 0 20px;
+            }
+
+            .navbar ul {
+                flex-wrap: wrap;
+                padding: 0 20px;
+            }
+
+            .navbar a {
+                padding: 15px 20px;
+                font-size: 13px;
+            }
+
+            .slide-overlay {
+                left: 30px;
+                bottom: 40px;
+                font-size: 24px;
+                padding: 20px 30px;
+            }
+
+            .stats-section {
+                margin: -30px auto 40px;
+            }
+
+            .videos-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .partners-grid {
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            }
+        }
+
+        @media (max-width: 640px) {
+            .brand-text p {
+                display: none;
+            }
+
+            .header-right {
+                flex-wrap: wrap;
+                gap: 8px;
+            }
+
+            .btn-header {
+                padding: 8px 16px;
+                font-size: 11px;
+            }
+
+            .navbar ul {
+                flex-direction: column;
+            }
+
+            .navbar a {
+                text-align: center;
+                border-bottom: 1px solid var(--gray-200);
+            }
+
+            .hero-slideshow {
+                height: 350px;
+            }
+
+            .slide-overlay {
+                left: 20px;
+                right: 20px;
+                bottom: 30px;
+                font-size: 20px;
+                padding: 20px 25px;
+            }
+
+            .stats-section {
+                grid-template-columns: 1fr;
+            }
+
+            .partners-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Smooth Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .stat-box {
+            animation: fadeIn 0.8s ease backwards;
+        }
+
+        .stat-box:nth-child(1) { animation-delay: 0.1s; }
+        .stat-box:nth-child(2) { animation-delay: 0.2s; }
+        .stat-box:nth-child(3) { animation-delay: 0.3s; }
+        .stat-box:nth-child(4) { animation-delay: 0.4s; }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+        
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-overlay" id="loader">
+        <div class="loader-logo">
+            <video autoplay loop muted playsinline>
+                <source src="videoExport-2026-01-03@10-42-33.525-540x540@60fps.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div class="loader-text">NPTEL</div>
+        <div class="loader-subtext">National Programme on Technology Enhanced Learning</div>
+        
+        <div class="access-warning">
+            🔒 AUTHENTICATION REQUIRED<br>
+            Please sign in to access the NPTEL portal
+        </div>
+        <button class="btn-gate" onclick="portalLogin()">Sign In to Continue</button>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-wrapper" id="mainContent">
+        <header class="header">
+            <div class="header-inner">
+                <div class="logo-section">
+                    <div class="logo-rotating">
+                        <video autoplay loop muted playsinline>
+                            <source src="videoExport-2026-01-03@10-42-33.525-540x540@60fps.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="brand-text">
+                        <h1>NPTEL</h1>
+                        <p>National Programme on Technology Enhanced Learning</p>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <span id="userStatus">Hello, user123</span>
+                    <button class="btn-header" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">
+                        Contact
+                    </button>
+                    <button class="btn-header">
+                        Search
+                    </button>
+                    <button class="btn-header logout" onclick="logout()">
+                        Logout
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <nav class="navbar">
+            <ul>
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="courses.html">Courses</a></li>
+                <li><a href="initiatives.html">Initiatives</a></li>
+                <li><a href="exams.html">Exams</a></li>
+                <li><a href="aboutus.html">About</a></li>
+            </ul>
+        </nav>
+
+        <main>
+            <!-- Hero Slideshow -->
+            <section class="hero-slideshow">
+                <div class="slide active">
+                    <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=80" alt="Learning">
+                    <div class="slide-overlay">Empowering India Through Learning</div>
+                </div>
+                <div class="slide">
+                    <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1200&q=80" alt="Courses">
+                    <div class="slide-overlay">3200+ Courses Across All Branches</div>
+                </div>
+                <div class="slide">
+                    <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=1200&q=80" alt="Certification">
+                    <div class="slide-overlay">Certification From Top IITs</div>
+                </div>
+                <div class="slide">
+                    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80" alt="Learners">
+                    <div class="slide-overlay">Join Millions of Active Learners</div>
+                </div>
+                <div class="slide">
+                    <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80" alt="Flexible">
+                    <div class="slide-overlay">Learn Anytime, Anywhere</div>
+                </div>
+                <div class="slide">
+                    <img src="https://images.unsplash.com/photo-1501504905252-473c47e087f8?auto=format&fit=crop&w=1200&q=80" alt="Exams">
+                    <div class="slide-overlay">Exams Held in 200+ Cities</div>
+                </div>
+
+                <div class="slide-dots">
+                    <span class="dot active" onclick="currentSlide(0)"></span>
+                    <span class="dot" onclick="currentSlide(1)"></span>
+                    <span class="dot" onclick="currentSlide(2)"></span>
+                    <span class="dot" onclick="currentSlide(3)"></span>
+                    <span class="dot" onclick="currentSlide(4)"></span>
+                    <span class="dot" onclick="currentSlide(5)"></span>
+                </div>
+            </section>
+            <!-- Stats Section -->
+            <section class="stats-section">
+                <div class="stat-box">
+                    <h3>1.86B+</h3>
+                    <p>YouTube Views</p>
+                </div>
+                <div class="stat-box">
+                    <h3>3200+</h3>
+                    <p>Courses Available</p>
+                </div>
+                <div class="stat-box">
+                    <h3>3.44 Cr+</h3>
+                    <p>Enrollments</p>
+                </div>
+                <div class="stat-box">
+                    <h3>7200+</h3>
+                    <p>Local Chapters</p>
+                </div>
+            </section>
+
+            <!-- Featured Videos -->
+            <section class="featured-videos">
+                <h2>🎬 Featured Learning Videos</h2>
+                <div class="videos-grid">
+                    <div class="video-card" onclick="openVideo('https://www.youtube.com/watch?v=20n_KqaPP7Q')">
+                        <div class="video-thumbnail">
+                            <img src="https://img.youtube.com/vi/20n_KqaPP7Q/maxresdefault.jpg" alt="NPTEL Introduction">
+                            <div class="play-overlay">
+                                <div class="play-button"></div>
+                            </div>
+                        </div>
+                        <div class="video-info">
+                            <h3>Introduction to NPTEL Platform</h3>
+                            <p>Discover how NPTEL is revolutionizing online learning in India. Learn about our comprehensive courses, certification process, and how to get started.</p>
+                            <span class="video-badge">Featured</span>
+                            <div class="video-meta">
+                                <span>📺 Watch Now</span>
+                                <span>⏱️ Educational</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="video-card" onclick="openVideo('https://www.youtube.com/watch?v=QOxsC6OBICI')">
+                        <div class="video-thumbnail">
+                            <img src="https://img.youtube.com/vi/QOxsC6OBICI/maxresdefault.jpg" alt="Success Stories">
+                            <div class="play-overlay">
+                                <div class="play-button"></div>
+                            </div>
+                        </div>
+                        <div class="video-info">
+                            <h3>NPTEL Success Stories</h3>
+                            <p>Hear from thousands of learners who transformed their careers through NPTEL. Real stories of students and professionals who achieved their goals.</p>
+                            <span class="video-badge">Trending</span>
+                            <div class="video-meta">
+                                <span>📺 Watch Now</span>
+                                <span>⏱️ Inspirational</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Partners Section -->
+            <section class="partners">
+                <h2>Participating Institutions</h2>
+                <div class="partners-grid">
+                    <a href="https://www.iitb.ac.in/" target="_blank" rel="noopener" class="partner">
+                        <img src="https://upload.wikimedia.org/wikipedia/en/1/1d/Indian_Institute_of_Technology_Bombay_Logo.svg" alt="IIT Bombay">
+                        <span>IIT Bombay</span>
+                    </a>
+                    <a href="https://home.iitd.ac.in/" target="_blank" rel="noopener" class="partner">
+                        <img src="https://upload.wikimedia.org/wikipedia/en/f/fd/Indian_Institute_of_Technology_Delhi_Logo.svg" alt="IIT Delhi">
+                        <span>IIT Delhi</span>
+                    </a>
+                    <a href="https://www.iitk.ac.in/" target="_blank" rel="noopener" class="partner">
+                        <img src="https://upload.wikimedia.org/wikipedia/en/a/a3/IIT_Kanpur_Logo.svg" alt="IIT Kanpur">
+                        <span>IIT Kanpur</span>
+                    </a>
+                    <a href="http://www.iitkgp.ac.in/" target="_blank" rel="noopener" class="partner">
+                        <img src="https://upload.wikimedia.org/wikipedia/en/1/1c/IIT_Kharagpur_Logo.svg" alt="IIT Kharagpur">
+                        <span>IIT Kharagpur</span>
+                    </a>
+                    <a href="https://www.iitm.ac.in/" target="_blank" rel="noopener" class="partner">
+                        <img src="https://upload.wikimedia.org/wikipedia/en/6/69/IIT_Madras_Logo.svg" alt="IIT Madras">
+                        <span>IIT Madras</span>
+                    </a>
+                    <a href="https://www.iitg.ac.in/" target="_blank" rel="noopener" class="partner">
+                        <img src="https://upload.wikimedia.org/wikipedia/en/1/12/IIT_Guwahati_Logo.svg" alt="IIT Guwahati">
+                        <span>IIT Guwahati</span>
+                    </a>
+                    <a href="https://www.iitr.ac.in/" target="_blank" rel="noopener" class="partner">
+                        <img src="https://upload.wikimedia.org/wikipedia/en/c/cc/Indian_Institute_of_Technology_Roorkee_logo.svg" alt="IIT Roorkee">
+                        <span>IIT Roorkee</span>
+                    </a>
+                    <a href="https://iisc.ac.in/" target="_blank" rel="noopener" class="partner">
+                        <img src="https://upload.wikimedia.org/wikipedia/en/1/10/Indian_Institute_of_Science_logo.svg" alt="IISc Bangalore">
+                        <span>IISc Bangalore</span>
+                    </a>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer" id="contact">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h4>About NPTEL</h4>
+                    <ul>
+                        <li><a href="#">Vision & Mission</a></li>
+                        <li><a href="#">Participating Institutes</a></li>
+                        <li><a href="#">Annual Reports</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#">Course Catalog</a></li>
+                        <li><a href="#">Exam Registration</a></li>
+                        <li><a href="#">Help Center</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <p style="font-size: 14px; line-height: 1.8;">
+                        NPTEL Administrator<br>
+                        IIT Madras, Chennai - 600036<br>
+                        <a href="mailto:support@nptel.iitm.ac.in" style="color: var(--accent-gold);">support@nptel.iitm.ac.in</a>
+                    </p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 NPTEL | Empowering Education Through Technology</p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Check login status on page load
+        window.addEventListener('DOMContentLoaded', function() {
+            const isLoggedIn = sessionStorage.getItem('nptelLoggedIn');
+            if (isLoggedIn === 'true') {
+                const loader = document.getElementById('loader');
+                loader.classList.add('hide');
+                
+                const main = document.getElementById('mainContent');
+                main.classList.add('show');
+                
+                document.getElementById('userStatus').style.display = "inline";
+            }
+        });
+
+        // Login function
+        function portalLogin() {
+            const userId = prompt("User ID:");
+            const password = prompt("Password:");
+
+            if (userId === "user123" && password === "vit123") {
+                sessionStorage.setItem('nptelLoggedIn', 'true');
+                
+                const loader = document.getElementById('loader');
+                loader.classList.add('hide');
+                
+                const main = document.getElementById('mainContent');
+                main.classList.add('show');
+                
+                document.getElementById('userStatus').style.display = "inline";
+            } else {
+                alert("Access Denied. Incorrect credentials.");
+            }
+        }
+
+        // Logout function
+        function logout() {
+            sessionStorage.removeItem('nptelLoggedIn');
+            alert('You have been logged out successfully.');
+            location.reload();
+        }
+
+        // Slideshow functionality
+        let slideIdx = 0;
+        const slides = document.querySelectorAll('.slide');
+        const dots = document.querySelectorAll('.dot');
+
+        function showSlide(n) {
+            slides.forEach(s => s.classList.remove('active'));
+            dots.forEach(d => d.classList.remove('active'));
+            slideIdx = n;
+            slides[slideIdx].classList.add('active');
+            dots[slideIdx].classList.add('active');
+        }
+
+        function currentSlide(n) {
+            showSlide(n);
+        }
+
+        // Auto-advance slideshow
+        setInterval(() => {
+            if(document.getElementById('mainContent').classList.contains('show')) {
+                slideIdx = (slideIdx + 1) % slides.length;
+                showSlide(slideIdx);
+            }
+        }, 4000);
+
+        // Open video in new tab
+        function openVideo(url) {
+            window.open(url, '_blank');
+        }
+    </script>
+</body>
+</html>

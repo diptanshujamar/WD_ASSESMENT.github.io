@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore NPTEL initiatives - Scaling technical education across India through innovation.">
+    <title>NPTEL Initiatives | Innovation in Education</title>
+    <style>
+        :root {
+            --primary-blue: #0047AB;
+            --deep-blue: #002855;
+            --accent-gold: #FFC107;
+            --bright-gold: #FFD700;
+            --white: #FFFFFF;
+            --light: #F8F9FA;
+            --gray-100: #F1F3F5;
+            --gray-200: #E9ECEF;
+            --gray-600: #6C757D;
+            --gray-800: #343A40;
+            --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.08);
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);
+            --shadow-xl: 0 12px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+            height: 100%;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: var(--white);
+            color: var(--gray-800);
+            line-height: 1.6;
+            overflow-x: hidden;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header - Compact & Modern */
+        .header {
+            background: linear-gradient(135deg, var(--deep-blue) 0%, var(--primary-blue) 100%);
+            padding: 12px 0;
+            box-shadow: var(--shadow-md);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            padding: 0 30px;
+            gap: 25px;
+        }
+        
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-rotating {
+            width: 64px;
+            height: 64px;
+            animation: spin 10s linear infinite;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid var(--accent-gold);
+            flex-shrink: 0;
+        }
+
+        @keyframes spin { 
+            100% { transform: rotate(360deg); } 
+        }
+
+        .logo-rotating video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .brand-text h1 { 
+            color: var(--white); 
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .brand-text p { 
+            color: rgba(255, 255, 255, 0.85); 
+            font-size: 11px;
+        }
+        
+        .header-right { 
+            margin-left: auto;
+            display: flex; 
+            gap: 12px;
+        }
+        
+        .btn-header {
+            background: var(--accent-gold);
+            color: var(--deep-blue);
+            border: none;
+            padding: 10px 24px;
+            font-size: 13px;
+            cursor: pointer;
+            font-weight: 600;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-header:hover {
+            background: var(--bright-gold);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 193, 7, 0.4);
+        }
+
+        /* Navigation - Sleek */
+        .navbar {
+            background: var(--white);
+            border-bottom: 1px solid var(--gray-200);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .navbar ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+        
+        .navbar a {
+            display: block;
+            color: var(--gray-800);
+            text-decoration: none;
+            padding: 18px 30px;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .navbar a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 3px;
+            background: var(--primary-blue);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+        
+        .navbar a:hover {
+            color: var(--primary-blue);
+        }
+
+        .navbar a:hover::after {
+            width: 70%;
+        }
+
+        .navbar a.active { 
+            color: var(--primary-blue);
+            font-weight: 700;
+        }
+
+        .navbar a.active::after {
+            width: 70%;
+        }
+
+        /* Main Content Area */
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Hero - Full Width Impact */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            padding: 80px 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h2 {
+            font-size: clamp(32px, 5vw, 56px);
+            color: var(--white);
+            margin-bottom: 20px;
+            font-weight: 800;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero p {
+            color: rgba(255, 255, 255, 0.95);
+            font-size: clamp(16px, 2.5vw, 20px);
+            font-weight: 400;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Initiatives Grid - Clean Cards */
+        .initiatives-section {
+            flex: 1;
+            padding: 60px 30px;
+            background: var(--light);
+        }
+
+        .initiatives-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--gray-200);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--accent-gold));
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--primary-blue);
+        }
+
+        .card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .icon {
+            width: 90px;
+            height: 90px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--deep-blue));
+            color: var(--accent-gold);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            font-weight: 800;
+            margin: 0 auto 25px;
+            box-shadow: var(--shadow-md);
+            transition: all 0.4s ease;
+        }
+
+        .card:hover .icon {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .card h3 {
+            color: var(--primary-blue);
+            margin-bottom: 15px;
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+        .card p {
+            font-size: 15px;
+            line-height: 1.7;
+            color: var(--gray-600);
+        }
+
+        /* Partners - Minimal & Clean */
+        .partners {
+            background: var(--white);
+            padding: 60px 30px;
+            border-top: 1px solid var(--gray-200);
+        }
+
+        .partners h2 {
+            text-align: center;
+            font-size: clamp(28px, 4vw, 36px);
+            color: var(--primary-blue);
+            margin-bottom: 50px;
+            font-weight: 700;
+        }
+
+        .partners-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 25px;
+        }
+
+        .partner {
+            background: var(--light);
+            border-radius: 12px;
+            padding: 25px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            border: 2px solid transparent;
+        }
+        
+        .partner:hover {
+            background: var(--white);
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--accent-gold);
+        }
+
+        .partner img {
+            width: 55px;
+            height: 55px;
+            object-fit: contain;
+            filter: grayscale(100%);
+            transition: filter 0.3s ease;
+        }
+
+        .partner:hover img {
+            filter: grayscale(0%);
+        }
+
+        .partner span { 
+            font-size: 11px; 
+            font-weight: 700; 
+            color: var(--gray-800);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Footer - Compact */
+        .footer {
+            background: var(--deep-blue);
+            color: rgba(255, 255, 255, 0.8);
+            padding: 50px 30px 25px;
+            border-top: 4px solid var(--accent-gold);
+        }
+        
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-col h4 {
+            color: var(--accent-gold);
+            margin-bottom: 20px;
+            font-size: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
+        }
+        
+        .footer-col ul { 
+            list-style: none; 
+        }
+
+        .footer-col li { 
+            margin-bottom: 10px; 
+        }
+
+        .footer-col a { 
+            color: rgba(255, 255, 255, 0.7); 
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .footer-col a:hover { 
+            color: var(--white);
+            padding-left: 5px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.5);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .header-inner {
+                padding: 0 20px;
+            }
+
+            .navbar ul {
+                flex-wrap: wrap;
+                padding: 0 20px;
+            }
+
+            .navbar a {
+                padding: 15px 20px;
+                font-size: 13px;
+            }
+
+            .initiatives-grid,
+            .partners-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 20px;
+            }
+
+            .hero {
+                padding: 60px 20px;
+            }
+
+            .initiatives-section {
+                padding: 40px 20px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .brand-text p {
+                display: none;
+            }
+
+            .header-right {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .btn-header {
+                padding: 8px 16px;
+                font-size: 11px;
+            }
+
+            .navbar ul {
+                flex-direction: column;
+            }
+
+            .navbar a {
+                text-align: center;
+                border-bottom: 1px solid var(--gray-200);
+            }
+
+            .initiatives-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .partners-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Smooth Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .card {
+            animation: fadeIn 0.6s ease backwards;
+        }
+
+        .card:nth-child(1) { animation-delay: 0.1s; }
+        .card:nth-child(2) { animation-delay: 0.2s; }
+        .card:nth-child(3) { animation-delay: 0.3s; }
+        .card:nth-child(4) { animation-delay: 0.4s; }
+        .card:nth-child(5) { animation-delay: 0.5s; }
+        .card:nth-child(6) { animation-delay: 0.6s; }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-inner">
+            <div class="logo-section">
+                <div class="logo-rotating">
+                    <video autoplay loop muted playsinline>
+                        <source src="videoExport-2026-01-03@10-42-33.525-540x540@60fps.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="brand-text">
+                    <h1>NPTEL</h1>
+                    <p>National Programme on Technology Enhanced Learning</p>
+                </div>
+            </div>
+            <div class="header-right">
+                <button class="btn-header" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">
+                    Contact
+                </button>
+                <button class="btn-header">
+                    Search
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <nav class="navbar">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="initiatives.html" class="active">Initiatives</a></li>
+            <li><a href="courses.html">Courses</a></li>
+            <li><a href="exams.html">Exams</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+    </nav>
+
+    <main class="main-content">
+        <section class="hero">
+            <div class="hero-content">
+                <h2>NPTEL Initiatives</h2>
+                <p>Scaling technical education across India through innovation and collaboration</p>
+            </div>
+        </section>
+
+        <section class="initiatives-section">
+            <div class="initiatives-grid">
+                <div class="card">
+                    <div class="icon">S</div>
+                    <h3>SWAYAM Portal</h3>
+                    <p>National MOOCs platform offering 600+ courses every semester for credit transfer and certification</p>
+                </div>
+
+                <div class="card">
+                    <div class="icon">LC</div>
+                    <h3>Local Chapters</h3>
+                    <p>Network of 5000+ colleges bridging NPTEL and students for enhanced engagement and support</p>
+                </div>
+
+                <div class="card">
+                    <div class="icon">IA</div>
+                    <h3>Industry Associate</h3>
+                    <p>Connecting learners with top industries through internships and recruitment based on NPTEL scores</p>
+                </div>
+
+                <div class="card">
+                    <div class="icon">CSR</div>
+                    <h3>CSR Funding</h3>
+                    <p>Corporate partnerships providing fee waivers for students from economically weaker backgrounds</p>
+                </div>
+
+                <div class="card">
+                    <div class="icon">ST</div>
+                    <h3>Soft Skills</h3>
+                    <p>Training initiatives focusing on employability and communication skills for technical graduates</p>
+                </div>
+
+                <div class="card">
+                    <div class="icon">G</div>
+                    <h3>GATE Support</h3>
+                    <p>Comprehensive video series and practice portals for GATE examination preparation</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="partners">
+            <h2>Participating Institutions</h2>
+            <div class="partners-grid">
+                <a href="https://www.iitb.ac.in/" target="_blank" rel="noopener" class="partner">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/1/1d/Indian_Institute_of_Technology_Bombay_Logo.svg" alt="IIT Bombay">
+                    <span>IIT Bombay</span>
+                </a>
+                <a href="https://home.iitd.ac.in/" target="_blank" rel="noopener" class="partner">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/f/fd/Indian_Institute_of_Technology_Delhi_Logo.svg" alt="IIT Delhi">
+                    <span>IIT Delhi</span>
+                </a>
+                <a href="https://www.iitk.ac.in/" target="_blank" rel="noopener" class="partner">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/a/a3/IIT_Kanpur_Logo.svg" alt="IIT Kanpur">
+                    <span>IIT Kanpur</span>
+                </a>
+                <a href="http://www.iitkgp.ac.in/" target="_blank" rel="noopener" class="partner">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/1/1c/IIT_Kharagpur_Logo.svg" alt="IIT Kharagpur">
+                    <span>IIT Kharagpur</span>
+                </a>
+                <a href="https://www.iitm.ac.in/" target="_blank" rel="noopener" class="partner">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/6/69/IIT_Madras_Logo.svg" alt="IIT Madras">
+                    <span>IIT Madras</span>
+                </a>
+                <a href="https://www.iitg.ac.in/" target="_blank" rel="noopener" class="partner">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/1/12/IIT_Guwahati_Logo.svg" alt="IIT Guwahati">
+                    <span>IIT Guwahati</span>
+                </a>
+                <a href="https://www.iitr.ac.in/" target="_blank" rel="noopener" class="partner">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/c/cc/Indian_Institute_of_Technology_Roorkee_logo.svg" alt="IIT Roorkee">
+                    <span>IIT Roorkee</span>
+                </a>
+                <a href="https://iisc.ac.in/" target="_blank" rel="noopener" class="partner">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/1/10/Indian_Institute_of_Science_logo.svg" alt="IISc Bangalore">
+                    <span>IISc Bangalore</span>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer" id="contact">
+        <div class="footer-content">
+            <div class="footer-col">
+                <h4>About NPTEL</h4>
+                <ul>
+                    <li><a href="#">Vision & Mission</a></li>
+                    <li><a href="#">Participating Institutes</a></li>
+                    <li><a href="#">Annual Reports</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="#">Course Catalog</a></li>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">FAQs</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <p style="font-size: 14px; line-height: 1.8;">
+                    NPTEL Administrator<br>
+                    IIT Madras, Chennai - 600036<br>
+                    <a href="mailto:support@nptel.iitm.ac.in" style="color: var(--accent-gold);">support@nptel.iitm.ac.in</a>
+                </p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 NPTEL | Empowering Education Through Technology</p>
+        </div>
+    </footer>
+</body>
+</html>

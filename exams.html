@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Register for NPTEL certification exams. Get certified by IITs and IISc with exams in 170+ cities across India.">
+    <title>NPTEL Exams & Certification | Register Now</title>
+    <style>
+        :root {
+            --primary-blue: #0047AB;
+            --deep-blue: #002855;
+            --accent-gold: #FFC107;
+            --bright-gold: #FFD700;
+            --white: #FFFFFF;
+            --light: #F8F9FA;
+            --gray-100: #F1F3F5;
+            --gray-200: #E9ECEF;
+            --gray-600: #6C757D;
+            --gray-800: #343A40;
+            --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.08);
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);
+            --shadow-xl: 0 12px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: var(--white);
+            color: var(--gray-800);
+            line-height: 1.6;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--deep-blue) 0%, var(--primary-blue) 100%);
+            padding: 12px 0;
+            box-shadow: var(--shadow-md);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            padding: 0 30px;
+            gap: 25px;
+        }
+        
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-rotating {
+            width: 64px;
+            height: 64px;
+            animation: spin 10s linear infinite;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid var(--accent-gold);
+            flex-shrink: 0;
+        }
+
+        @keyframes spin { 
+            100% { transform: rotate(360deg); } 
+        }
+
+        .logo-rotating video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .brand-text h1 { 
+            color: var(--white); 
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .brand-text p { 
+            color: rgba(255, 255, 255, 0.85); 
+            font-size: 11px;
+        }
+        
+        .header-right { 
+            margin-left: auto;
+            display: flex; 
+            gap: 12px;
+            align-items: center;
+        }
+
+        #userStatus {
+            color: var(--accent-gold);
+            font-weight: 600;
+            font-size: 14px;
+        }
+        
+        .btn-header {
+            background: var(--accent-gold);
+            color: var(--deep-blue);
+            border: none;
+            padding: 10px 24px;
+            font-size: 13px;
+            cursor: pointer;
+            font-weight: 600;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-header:hover {
+            background: var(--bright-gold);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 193, 7, 0.4);
+        }
+
+        .btn-header.logout {
+            background: var(--white);
+            color: var(--deep-blue);
+        }
+
+        /* Navigation */
+        .navbar {
+            background: var(--white);
+            border-bottom: 1px solid var(--gray-200);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .navbar ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+        
+        .navbar a {
+            display: block;
+            color: var(--gray-800);
+            text-decoration: none;
+            padding: 18px 30px;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .navbar a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 3px;
+            background: var(--primary-blue);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+        
+        .navbar a:hover {
+            color: var(--primary-blue);
+        }
+
+        .navbar a:hover::after {
+            width: 70%;
+        }
+
+        .navbar a.active { 
+            color: var(--primary-blue);
+            font-weight: 700;
+        }
+
+        .navbar a.active::after {
+            width: 70%;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            padding: 80px 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            color: var(--white);
+            margin-bottom: 20px;
+            font-weight: 800;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero p {
+            color: rgba(255, 255, 255, 0.95);
+            font-size: clamp(16px, 2.5vw, 18px);
+            line-height: 1.8;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Content Wrapper */
+        .content-wrapper {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 60px 30px;
+            flex: 1;
+        }
+
+        /* Info Cards */
+        .info-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .info-card {
+            background: var(--white);
+            border: 2px solid var(--gray-200);
+            border-radius: 16px;
+            padding: 35px;
+            text-align: center;
+            transition: all 0.4s ease;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .info-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-gold);
+            box-shadow: var(--shadow-xl);
+        }
+        
+        .info-card h3 {
+            color: var(--primary-blue);
+            font-size: 20px;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        
+        .info-card .highlight {
+            color: var(--primary-blue);
+            font-size: 36px;
+            font-weight: 800;
+            margin: 15px 0;
+        }
+        
+        .info-card p {
+            color: var(--gray-600);
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        /* Important Dates Section */
+        .dates-section {
+            background: var(--light);
+            border-radius: 20px;
+            padding: 50px 40px;
+            margin: 40px 0;
+            border: 2px solid var(--accent-gold);
+        }
+        
+        .dates-section h2 {
+            color: var(--primary-blue);
+            font-size: clamp(28px, 4vw, 36px);
+            margin-bottom: 40px;
+            text-align: center;
+            font-weight: 700;
+        }
+        
+        .dates-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        
+        .date-item {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 25px;
+            border-left: 5px solid var(--primary-blue);
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
+        }
+
+        .date-item:hover {
+            transform: translateX(8px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .date-item h4 {
+            color: var(--primary-blue);
+            font-size: 18px;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+        
+        .date-item p {
+            color: var(--gray-600);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        
+        .date-item .date {
+            color: var(--primary-blue);
+            font-weight: 700;
+            font-size: 20px;
+            margin-top: 12px;
+            display: block;
+        }
+
+        /* Certification Info */
+        .cert-section {
+            background: var(--white);
+            border: 2px solid var(--primary-blue);
+            border-radius: 20px;
+            padding: 50px 40px;
+            margin: 40px 0;
+        }
+        
+        .cert-section h2 {
+            color: var(--primary-blue);
+            font-size: clamp(28px, 4vw, 36px);
+            margin-bottom: 25px;
+            font-weight: 700;
+        }
+
+        .cert-section > p {
+            color: var(--gray-600);
+            font-size: 16px;
+            margin-bottom: 30px;
+        }
+        
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .cert-box {
+            background: var(--light);
+            padding: 25px;
+            border-radius: 12px;
+            border: 2px solid var(--gray-200);
+            transition: all 0.3s ease;
+        }
+
+        .cert-box:hover {
+            border-color: var(--accent-gold);
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .cert-box h4 {
+            color: var(--primary-blue);
+            font-size: 20px;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        
+        .cert-box ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .cert-box li {
+            color: var(--gray-700);
+            font-size: 15px;
+            margin-bottom: 12px;
+            padding-left: 30px;
+            position: relative;
+            line-height: 1.6;
+        }
+        
+        .cert-box li:before {
+            content: "✓";
+            color: var(--accent-gold);
+            font-weight: 800;
+            font-size: 18px;
+            position: absolute;
+            left: 0;
+        }
+
+        /* Course Table Section */
+        .table-section {
+            background: var(--light);
+            border-radius: 20px;
+            padding: 50px 40px;
+            margin: 40px 0;
+        }
+
+        .table-section h2 {
+            color: var(--primary-blue);
+            font-size: clamp(24px, 3vw, 32px);
+            margin-bottom: 30px;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .table-wrapper {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead {
+            background: linear-gradient(135deg, var(--primary-blue), var(--deep-blue));
+            color: var(--white);
+        }
+
+        th {
+            padding: 18px 15px;
+            text-align: left;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        td {
+            padding: 18px 15px;
+            border-bottom: 1px solid var(--gray-200);
+            font-size: 14px;
+            color: var(--gray-700);
+        }
+
+        tbody tr:hover {
+            background: var(--light);
+        }
+
+        .course-code {
+            color: var(--primary-blue);
+            font-weight: 700;
+        }
+
+        .btn-register {
+            background: var(--accent-gold);
+            color: var(--deep-blue);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 13px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-register:hover {
+            background: var(--primary-blue);
+            color: var(--white);
+            transform: scale(1.05);
+        }
+
+        .btn-view {
+            background: var(--white);
+            color: var(--primary-blue);
+            border: 2px solid var(--primary-blue);
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 12px;
+            margin-right: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-view:hover {
+            background: var(--primary-blue);
+            color: var(--white);
+        }
+
+        /* Exam Centers */
+        .centers-section {
+            background: var(--white);
+            border: 2px solid var(--primary-blue);
+            border-radius: 20px;
+            padding: 50px 40px;
+            margin: 40px 0;
+        }
+
+        .centers-section h2 {
+            color: var(--primary-blue);
+            font-size: clamp(28px, 4vw, 36px);
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .centers-section > p {
+            text-align: center;
+            color: var(--gray-600);
+            margin-bottom: 35px;
+            font-size: 16px;
+        }
+
+        .centers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+        }
+
+        .center-badge {
+            background: var(--light);
+            border: 2px solid var(--gray-200);
+            border-radius: 10px;
+            padding: 18px;
+            text-align: center;
+            font-size: 14px;
+            color: var(--primary-blue);
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .center-badge:hover {
+            background: var(--primary-blue);
+            color: var(--white);
+            border-color: var(--primary-blue);
+            transform: scale(1.05);
+        }
+
+        /* Partners */
+        .partners {
+            background: var(--light);
+            padding: 60px 30px;
+            border-top: 1px solid var(--gray-200);
+        }
+
+        .partners h2 {
+            text-align: center;
+            font-size: clamp(28px, 4vw, 36px);
+            color: var(--primary-blue);
+            margin-bottom: 50px;
+            font-weight: 700;
+        }
+
+        .partners-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 25px;
+        }
+
+        .partner {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 25px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            border: 2px solid var(--gray-200);
+        }
+        
+        .partner:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--accent-gold);
+        }
+
+        .partner img {
+            width: 55px;
+            height: 55px;
+            object-fit: contain;
+            filter: grayscale(100%);
+            transition: filter 0.3s ease;
+        }
+
+        .partner:hover img {
+            filter: grayscale(0%);
+        }
+
+        .partner span { 
+            font-size: 11px; 
+            font-weight: 700; 
+            color: var(--gray-800);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--deep-blue);
+            color: rgba(255, 255, 255, 0.8);
+            padding: 50px 30px 25px;
+            border-top: 4px solid var(--accent-gold);
+            margin-top: auto;
+        }
+        
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-col h4 {
+            color: var(--accent-gold);
+            margin-bottom: 20px;
+            font-size: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
+        }
+        
+        .footer-col ul { 
+            list-style: none; 
+        }
+
+        .footer-col li { 
+            margin-bottom: 10px; 
+        }
+
+        .footer-col a { 
+            color: rgba(255, 255, 255, 0.7); 
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .footer-col a:hover { 
+            color: var(--white);
+            padding-left: 5px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.5);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .header-inner {
+                padding: 0 20px;
+            }
+
+            .navbar ul {
+                flex-wrap: wrap;
+                padding: 0 20px;
+            }
+
+            .navbar a {
+                padding: 15px 20px;
+                font-size: 13px;
+            }
+
+            .info-cards,
+            .dates-grid,
+            .cert-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .centers-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .table-wrapper {
+                overflow-x: auto;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .brand-text p {
+                display: none;
+            }
+
+            .header-right {
+                flex-wrap: wrap;
+                gap: 8px;
+            }
+
+            .btn-header {
+                padding: 8px 16px;
+                font-size: 11px;
+            }
+
+            .navbar ul {
+                flex-direction: column;
+            }
+
+            .navbar a {
+                text-align: center;
+                border-bottom: 1px solid var(--gray-200);
+            }
+
+            .partners-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .info-card,
+        .date-item,
+        .cert-box {
+            animation: fadeIn 0.6s ease backwards;
+        }
+
+        .info-card:nth-child(1) { animation-delay: 0.1s; }
+        .info-card:nth-child(2) { animation-delay: 0.2s; }
+        .info-card:nth-child(3) { animation-delay: 0.3s; }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-inner">
+            <div class="logo-section">
+                <div class="logo-rotating">
+                    <video autoplay loop muted playsinline>
+                        <source src="videoExport-2026-01-03@10-42-33.525-540x540@60fps.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="brand-text">
+                    <h1>NPTEL</h1>
+                    <p>National Programme on Technology Enhanced Learning</p>
+                </div>
+            </div>
+            <div class="header-right">
+                <span id="userStatus">Hello, user123</span>
+                <button class="btn-header" onclick="alert('Contact Us')">
+                    Contact
+                </button>
+                <button class="btn-header">
+                    Search
+                </button>
+                <button class="btn-header logout" onclick="logout()">
+                    Logout
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <nav class="navbar">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="courses.html">Courses</a></li>
+            <li><a href="initiatives.html">Initiatives</a></li>
+            <li><a href="exams.html" class="active">Exams</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>NPTEL Exams & Certification</h1>
+                <p>Get certified by IITs and IISc. Register for proctored exams conducted in 170+ cities across India. Certificates are valuable additions to your resume and are recognized by leading employers.</p>
+            </div>
+        </section>
+
+        <div class="content-wrapper">
+            <div class="info-cards">
+                <div class="info-card">
+                    <h3>📝 Exam Fee</h3>
+                    <p class="highlight">₹ 1,000</p>
+                    <p>Per course certification exam including GST</p>
+                </div>
+                <div class="info-card">
+                    <h3>🏛️ Exam Centers</h3>
+                    <p class="highlight">170+</p>
+                    <p>Cities across India for your convenience</p>
+                </div>
+                <div class="info-card">
+                    <h3>🎓 Pass Criteria</h3>
+                    <p class="highlight">40/40</p>
+                    <p>Average Assignment ≥40% AND Final Exam ≥40%</p>
+                </div>
+            </div>
+
+            <div class="dates-section">
+                <h2>📅 Important Dates - January 2026 Semester</h2>
+                <div class="dates-grid">
+                    <div class="date-item">
+                        <h4>🔓 Course Enrollment Opens</h4>
+                        <p>Start enrolling in your desired courses</p>
+                        <span class="date">20th October 2025</span>
+                    </div>
+                    <div class="date-item">
+                        <h4>🔒 Course Enrollment Closes</h4>
+                        <p>Last date to enroll in courses</p>
+                        <span class="date">27th January 2026</span>
+                    </div>
+                    <div class="date-item">
+                        <h4>📖 Course Content Release</h4>
+                        <p>Weekly content starts from this date</p>
+                        <span class="date">27th January 2026</span>
+                    </div>
+                    <div class="date-item">
+                        <h4>📝 Exam Registration Opens</h4>
+                        <p>Register for certification exams</p>
+                        <span class="date">10th February 2026</span>
+                    </div>
+                    <div class="date-item">
+                        <h4>📝 Exam Registration Closes</h4>
+                        <p>Last date to register for exams</p>
+                        <span class="date">12th April 2026</span>
+                    </div>
+                    <div class="date-item">
+                        <h4>🏆 Final Exams</h4>
+                        <p>Proctored examination date</p>
+                        <span class="date">26th & 27th April 2026</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="table-section">
+                <h2>Available Courses for Exam Registration - January 2026</h2>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Course Code</th>
+                                <th>Course Name</th>
+                                <th>Category</th>
+                                <th>Institute</th>
+                                <th>Duration</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="course-code">CS101</td>
+                                <td>Introduction to Programming in C</td>
+                                <td>Computer Science</td>
+                                <td>IIT Kanpur</td>
+                                <td>12 weeks</td>
+                                <td>
+                                    <button class="btn-view" onclick="viewCourse('CS101')">View</button>
+                                    <button class="btn-register" onclick="registerExam('CS101')">Register</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="course-code">EE201</td>
+                                <td>Digital Circuits</td>
+                                <td>Electrical Engineering</td>
+                                <td>IIT Madras</td>
+                                <td>12 weeks</td>
+                                <td>
+                                    <button class="btn-view" onclick="viewCourse('EE201')">View</button>
+                                    <button class="btn-register" onclick="registerExam('EE201')">Register</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="course-code">ME301</td>
+                                <td>Thermodynamics</td>
+                                <td>Mechanical Engineering</td>
+                                <td>IIT Bombay</td>
+                                <td>12 weeks</td>
+                                <td>
+                                    <button class="btn-view" onclick="viewCourse('ME301')">View</button>
+                                    <button class="btn-register" onclick="registerExam('ME301')">Register</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="course-code">CS202</td>
+                                <td>Data Structures and Algorithms</td>
+                                <td>Computer Science</td>
+                                <td>IIT Delhi</td>
+                                <td>12 weeks</td>
+                                <td>
+                                    <button class="btn-view" onclick="viewCourse('CS202')">View</button>
+                                    <button class="btn-register" onclick="registerExam('CS202')">Register</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="course-code">MG101</td>
+                                <td>Organizational Behavior</td>
+                                <td>Management</td>
+                                <td>IIT Kharagpur</td>
+                                <td>8 weeks</td>
+                                <td>
+                                    <button class="btn-view" onclick="viewCourse('MG101')">View</button>
+                                    <button class="btn-register" onclick="registerExam('MG101')">Register</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="course-code">CS303</td>
+                                <td>Machine Learning</td>
+                                <td>Computer Science</td>
+                                <td>IIT Madras</td>
+                                <td>12 weeks</td>
+                                <td>
+                                    <button class="btn-view" onclick="viewCourse('CS303')">View</button>
+                                    <button class="btn-register" onclick="registerExam('CS303')">Register</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="cert-section">
+                <h2>🎓 Certification Guidelines</h2>
+                <p>To receive a certificate from IITs/IISc, you must meet specific criteria. Here's what you need to know:</p>
+                
+                <div class="cert-grid">
+                    <div class="cert-box">
+                        <h4>✅ Certificate Eligibility</h4>
+                        <ul>
+                            <li>Average assignment score ≥ 40%</li>
+                            <li>Final exam score ≥ 40%</li>
+                            <li>Both criteria must be satisfied</li>
+                            <li>Proctored exam attendance mandatory</li>
+                        </ul>
+                    </div>
+                    <div class="cert-box">
+                        <h4>🏅 Certificate Types</h4>
+                        <ul>
+                            <li>Elite + Gold: Score ≥ 90%</li>
+                            <li>Elite + Silver: Score ≥ 75%</li>
+                            <li>Elite: Score ≥ 60%</li>
+                            <li>Successfully Completed: Score ≥ 40%</li>
+                        </ul>
+                    </div>
+                    <div class="cert-box">
+                        <h4>📄 Certificate Features</h4>
+                        <ul>
+                            <li>Signed by IIT/IISc faculty</li>
+                            <li>Unique certificate number</li>
+                            <li>QR code for verification</li>
+                            <li>Digital and physical copies</li>
+                        </ul>
+                    </div>
+                    <div class="cert-box">
+                        <h4>💼 Recognition</h4>
+                        <ul>
+                            <li>Recognized by leading employers</li>
+                            <li>Credit transfer eligible (UGC/AICTE)</li>
+                            <li>Valuable for career growth</li>
+                            <li>Enhances academic profile</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="centers-section">
+                <h2>🏛️ Exam Centers (Sample Cities)</h2>
+                <p>Exams are conducted in 170+ cities across India. Select your preferred city during registration.</p>
+                <div class="centers-grid">
+                    <div class="center-badge">Mumbai</div>
+                    <div class="center-badge">Delhi</div>
+                    <div class="center-badge">Bangalore</div>
+                    <div class="center-badge">Chennai</div>
+                    <div class="center-badge">Hyderabad</div>
+                    <div class="center-badge">Pune</div>
+                    <div class="center-badge">Kolkata</div>
+                    <div class="center-badge">Ahmedabad</div>
+                    <div class="center-badge">Jaipur</div>
+                    <div class="center-badge">Lucknow</div>
+                    <div class="center-badge">Chandigarh</div>
+                    <div class="center-badge">Kochi</div>
+                    <div class="center-badge">Indore</div>
+                    <div class="center-badge">Bhopal</div>
+                    <div class="center-badge">Nagpur</div>
+                    <div class="center-badge">Visakhapatnam</div>
+                </div>
+                <p style="text-align: center; margin-top: 30px; color: var(--gray-600); font-size: 15px;">+ 154 more cities available</p>
+            </div>
+        </div>
+
+        <section class="partners">
+            <h2>Participating Institutions</h2>
+            <div class="partners-grid">
+                <a href="https://www.iitb.ac.in/" target="_blank" rel="noopener" class="partner">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/1/1d/Indian_Institute_of_Technology_Bombay_Logo.svg" alt="IIT Bombay">
+                    <span>IIT Bombay</span>
+                </a>
+                <a href="https://home.iitd.ac.in/" target="_blank" rel="noopener" class="partner">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/f/fd/Indian_Institute_of_Technology_Delhi_Logo.svg" alt="IIT Delhi">
+                    <span>IIT Delhi</span>
+                </a>
+                <a href="https://www.iitk.ac.in/" target="_blank" rel="noopener" class="partner">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/a/a3/IIT_Kanpur_Logo.svg" alt="IIT Kanpur">
+                    <span>IIT Kanpur</span>
+                </a>
+                <a href="http://www.iitkgp.ac.in/" target="_blank" rel="noopener" class="partner">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/1/1c/IIT_Kharagpur_Logo.svg" alt="IIT Kharagpur">
+                    <span>IIT Kharagpur</span>
+                </a>
+                <a href="https://www.iitm.ac.in/" target="_blank" rel="noopener" class="partner">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/6/69/IIT_Madras_Logo.svg" alt="IIT Madras">
+                    <span>IIT Madras</span>
+                </a>
+                <a href="https://www.iitg.ac.in/" target="_blank" rel="noopener" class="partner">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/1/12/IIT_Guwahati_Logo.svg" alt="IIT Guwahati">
+                    <span>IIT Guwahati</span>
+                </a>
+                <a href="https://www.iitr.ac.in/" target="_blank" rel="noopener" class="partner">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/c/cc/Indian_Institute_of_Technology_Roorkee_logo.svg" alt="IIT Roorkee">
+                    <span>IIT Roorkee</span>
+                </a>
+                <a href="https://iisc.ac.in/" target="_blank" rel="noopener" class="partner">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/1/10/Indian_Institute_of_Science_logo.svg" alt="IISc Bangalore">
+                    <span>IISc Bangalore</span>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-col">
+                <h4>About NPTEL</h4>
+                <ul>
+                    <li><a href="about.html">Vision & Mission</a></li>
+                    <li><a href="#">Participating Institutes</a></li>
+                    <li><a href="#">Annual Reports</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="courses.html">Course Catalog</a></li>
+                    <li><a href="exams.html">Exam Registration</a></li>
+                    <li><a href="#">Help Center</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <p style="font-size: 14px; line-height: 1.8;">
+                    NPTEL Administrator<br>
+                    IIT Madras, Chennai - 600036<br>
+                    <a href="mailto:support@nptel.iitm.ac.in" style="color: var(--accent-gold);">support@nptel.iitm.ac.in</a>
+                </p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 NPTEL | Empowering Education Through Technology</p>
+        </div>
+    </footer>
+
+    <script>
+        // Check if user is logged in
+        function checkLogin() {
+            const isLoggedIn = sessionStorage.getItem('nptelLoggedIn');
+            if (!isLoggedIn) {
+                window.location.href = 'index.html';
+            }
+        }
+
+        // Logout function
+        function logout() {
+            sessionStorage.removeItem('nptelLoggedIn');
+            alert('You have been logged out successfully.');
+            window.location.href = 'index.html';
+        }
+
+        // View course details
+        function viewCourse(courseCode) {
+            alert(`Opening course details for ${courseCode}...`);
+        }
+
+        // Register for exam
+        function registerExam(courseCode) {
+            if (confirm(`Do you want to register for the exam for course ${courseCode}?\n\nExam Fee: ₹1,000 (including GST)\n\nYou will be redirected to the payment page.`)) {
+                alert(`Redirecting to exam registration and payment for ${courseCode}...`);
+            }
+        }
+
+        // Check login status on page load
+        checkLogin();
+    </script>
+</body>
+</html>
