@@ -209,11 +209,27 @@
             bottom: 0;
             background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>');
             opacity: 0.3;
+            pointer-events: none;
+            z-index: 1; /* ensure overlay stays above the video but under content */
+        }
+
+        /* Background video for hero */
+        .hero-bg-video {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+            opacity: 0.55;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+            filter: brightness(0.85) saturate(0.95);
         }
 
         .hero-content {
             position: relative;
-            z-index: 1;
+            z-index: 2;
             max-width: 800px;
             margin: 0 auto;
         }
@@ -563,6 +579,16 @@
 
     <main class="main-content">
         <section class="hero">
+            <!-- Background video: replace 'hero-bg.mp4' with your actual video file path.
+                 Include a 'poster' image for browsers/devices that don't autoplay video. -->
+            <video class="hero-bg-video" autoplay muted loop playsinline poster="hero-poster.jpg" aria-hidden="true">
+                <source src="hero-bg.mp4" type="video/mp4">
+                <!-- Optional WebM fallback -->
+                <source src="hero-bg.webm" type="video/webm">
+                <!-- Text fallback -->
+                Your browser does not support the background video. Consider updating to a newer browser or provide a poster image.
+            </video>
+
             <div class="hero-content">
                 <h2>NPTEL Initiatives</h2>
                 <p>Scaling technical education across India through innovation and collaboration</p>
@@ -679,5 +705,42 @@
             <p>&copy; 2026 NPTEL | Empowering Education Through Technology</p>
         </div>
     </footer>
+
+    <script>
+        // Accessibility: Respect users who prefer reduced motion by pausing the background video
+        (function() {
+            const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            const heroVideo = document.querySelector('.hero-bg-video');
+            if (!heroVideo) return;
+
+            if (prefersReduced) {
+                // Pause and hide the video for reduced-motion users
+                heroVideo.pause();
+                heroVideo.style.display = 'none';
+                // Optionally you could fade the hero background to a solid color or poster
+                document.querySelector('.hero').style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%)';
+            } else {
+                // Try to play the video (some browsers block autoplay — this will silently fail)
+                const playPromise = heroVideo.play();
+                if (playPromise !== undefined) {
+                    playPromise.catch(() => {
+                        // Autoplay blocked — leave poster visible
+                        heroVideo.style.opacity = '0';
+                    });
+                }
+            }
+
+            // If the video is very large, you might want to reduce playback on small screens:
+            function toggleVideoOnSmallScreens() {
+                if (window.innerWidth < 560) {
+                    heroVideo.style.display = 'none';
+                } else {
+                    if (!prefersReduced) heroVideo.style.display = '';
+                }
+            }
+            window.addEventListener('resize', toggleVideoOnSmallScreens);
+            toggleVideoOnSmallScreens();
+        })();
+    </script>
 </body>
 </html>
