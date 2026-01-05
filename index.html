@@ -44,8 +44,6 @@
             display: flex;
             flex-direction: column;
         }
-
-        /* Loading Screen */
         .loading-overlay {
             position: fixed;
             top: 0;
@@ -72,7 +70,7 @@
             height: 200px;
             margin-bottom: 30px;
             animation: spin 3s linear infinite;
-            border-radius: 50%;
+            border-radius: 80%;
             overflow: hidden;
             box-shadow: 0 8px 30px rgba(255, 193, 7, 0.4);
             border: 4px solid var(--accent-gold);
@@ -141,12 +139,146 @@
             box-shadow: 0 6px 20px rgba(255, 193, 7, 0.4);
         }
 
+        .login-box {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--white);
+            padding: 50px 45px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            z-index: 1000000;
+            width: 90%;
+            max-width: 450px;
+            animation: slideIn 0.4s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translate(-50%, -45%);
+            }
+            to {
+                opacity: 1;
+                transform: translate(-50%, -50%);
+            }
+        }
+
+        .login-box.active {
+            display: block;
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .login-header h2 {
+            color: var(--primary-blue);
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .login-header p {
+            color: var(--gray-600);
+            font-size: 14px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            color: var(--gray-800);
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 14px 18px;
+            border: 2px solid var(--gray-200);
+            border-radius: 10px;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(0, 71, 171, 0.1);
+        }
+
+        .btn-login {
+            width: 100%;
+            background: var(--primary-blue);
+            color: var(--white);
+            border: none;
+            padding: 15px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 10px;
+        }
+
+        .btn-login:hover {
+            background: var(--deep-blue);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 71, 171, 0.3);
+        }
+
+        .login-note {
+            text-align: center;
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid var(--gray-200);
+            color: var(--gray-600);
+            font-size: 13px;
+        }
+
+        .login-note strong {
+            color: var(--primary-blue);
+            display: block;
+            margin-top: 8px;
+        }
+
+        .error-message {
+            background: #ffe6e6;
+            color: #d32f2f;
+            padding: 12px 15px;
+            border-radius: 8px;
+            font-size: 14px;
+            margin-bottom: 20px;
+            border-left: 4px solid #d32f2f;
+            display: none;
+        }
+
+        .error-message.show {
+            display: block;
+            animation: shake 0.3s ease;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+
         @keyframes fadeInSlow {
             0% { opacity: 0; transform: translateY(10px); }
             100% { opacity: 1; transform: translateY(0); }
         }
         
-        /* Main Content */
         .main-wrapper {
             opacity: 0;
             filter: blur(15px);
@@ -163,7 +295,6 @@
             pointer-events: auto;
         }
 
-        /* Header - Compact & Modern */
         .header {
             background: linear-gradient(135deg, var(--deep-blue) 0%, var(--primary-blue) 100%);
             padding: 12px 0;
@@ -262,8 +393,6 @@
         .btn-header.logout:hover {
             background: var(--gray-100);
         }
-
-        /* Navigation - Sleek */
         .navbar {
             background: var(--white);
             border-bottom: 1px solid var(--gray-200);
@@ -318,8 +447,6 @@
         .navbar a.active::after {
             width: 70%;
         }
-
-        /* Hero Slideshow */
         .hero-slideshow {
             position: relative;
             height: 500px;
@@ -391,7 +518,6 @@
             border-radius: 6px;
         }
 
-        /* Stats Section */
         .stats-section {
             max-width: 1400px;
             margin: -50px auto 60px;
@@ -431,8 +557,6 @@
             font-size: 15px;
             font-weight: 600;
         }
-
-        /* Featured Videos Section */
         .featured-videos {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
             padding: 80px 30px;
@@ -597,8 +721,6 @@
             font-size: 13px;
             font-weight: 600;
         }
-
-        /* Partners - Minimal & Clean */
         .partners {
             background: var(--light);
             padding: 60px 30px;
@@ -660,8 +782,6 @@
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
-
-        /* Footer - Compact */
         .footer {
             background: var(--deep-blue);
             color: rgba(255, 255, 255, 0.8);
@@ -796,9 +916,11 @@
             .partners-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
-        }
 
-        /* Smooth Animations */
+            .login-box {
+                padding: 35px 30px;
+            }
+        }
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
@@ -826,7 +948,6 @@
     </style>
 </head>
 <body>
-    <!-- Loading Screen -->
     <div class="loading-overlay" id="loader">
         <div class="loader-logo">
             <video autoplay loop muted playsinline>
@@ -840,10 +961,39 @@
             🔒 AUTHENTICATION REQUIRED<br>
             Please sign in to access the NPTEL portal
         </div>
-        <button class="btn-gate" onclick="portalLogin()">Sign In to Continue</button>
+        <button class="btn-gate" onclick="showLoginBox()">Sign In to Continue</button>
     </div>
 
-    <!-- Main Content -->
+    <div class="login-box" id="loginBox">
+        <div class="login-header">
+            <h2>🔐 NPTEL Login</h2>
+            <p>Enter your credentials to access the portal</p>
+        </div>
+        
+        <div class="error-message" id="errorMessage">
+            Invalid credentials. Please try again.
+        </div>
+
+        <form onsubmit="handleLogin(event)">
+            <div class="form-group">
+                <label for="userId">User ID</label>
+                <input type="text" id="userId" name="userId" required autocomplete="username" placeholder="Enter your user ID">
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required autocomplete="current-password" placeholder="Enter your password">
+            </div>
+            
+            <button type="submit" class="btn-login">Sign In</button>
+        </form>
+
+        <div class="login-note">
+            Demo Credentials:<br>
+            <strong>User ID: user123 | Password: vit123</strong>
+        </div>
+    </div>
+
     <div class="main-wrapper" id="mainContent">
         <header class="header">
             <div class="header-inner">
@@ -875,16 +1025,15 @@
 
         <nav class="navbar">
             <ul>
-                <li><a href="index.html" class="active">Home</a></li>
-                <li><a href="courses.html">Courses</a></li>
-                <li><a href="initiatives.html">Initiatives</a></li>
-                <li><a href="exams.html">Exams</a></li>
-                <li><a href="aboutus.html">About</a></li>
+                <li><a href="index.html" class="active" target="_self">Home</a></li>
+                <li><a href="courses.html" target="_self">Courses</a></li>
+                <li><a href="initiatives.html" target="_self">Initiatives</a></li>
+                <li><a href="exams.html" target="_self">Exams</a></li>
+                <li><a href="aboutus.html" target="_self">About</a></li>
             </ul>
         </nav>
 
         <main>
-            <!-- Hero Slideshow -->
             <section class="hero-slideshow">
                 <div class="slide active">
                     <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=80" alt="Learning">
@@ -920,7 +1069,6 @@
                     <span class="dot" onclick="currentSlide(5)"></span>
                 </div>
             </section>
-            <!-- Stats Section -->
             <section class="stats-section">
                 <div class="stat-box">
                     <h3>1.86B+</h3>
@@ -940,7 +1088,6 @@
                 </div>
             </section>
 
-            <!-- Featured Videos -->
             <section class="featured-videos">
                 <h2>🎬 Featured Learning Videos</h2>
                 <div class="videos-grid">
@@ -982,7 +1129,6 @@
                 </div>
             </section>
 
-            <!-- Partners Section -->
             <section class="partners">
                 <h2>Participating Institutions</h2>
                 <div class="partners-grid">
@@ -1056,7 +1202,6 @@
     </div>
 
     <script>
-        // Check login status on page load
         window.addEventListener('DOMContentLoaded', function() {
             const isLoggedIn = sessionStorage.getItem('nptelLoggedIn');
             if (isLoggedIn === 'true') {
@@ -1070,13 +1215,21 @@
             }
         });
 
-        // Login function
-        function portalLogin() {
-            const userId = prompt("User ID:");
-            const password = prompt("Password:");
+        function showLoginBox() {
+            document.getElementById('loginBox').classList.add('active');
+        }
+
+        function handleLogin(event) {
+            event.preventDefault();
+            
+            const userId = document.getElementById('userId').value;
+            const password = document.getElementById('password').value;
+            const errorMsg = document.getElementById('errorMessage');
 
             if (userId === "user123" && password === "vit123") {
                 sessionStorage.setItem('nptelLoggedIn', 'true');
+                
+                document.getElementById('loginBox').classList.remove('active');
                 
                 const loader = document.getElementById('loader');
                 loader.classList.add('hide');
@@ -1086,18 +1239,19 @@
                 
                 document.getElementById('userStatus').style.display = "inline";
             } else {
-                alert("Access Denied. Incorrect credentials.");
+                errorMsg.classList.add('show');
+                setTimeout(() => {
+                    errorMsg.classList.remove('show');
+                }, 3000);
             }
         }
 
-        // Logout function
         function logout() {
             sessionStorage.removeItem('nptelLoggedIn');
             alert('You have been logged out successfully.');
             location.reload();
         }
 
-        // Slideshow functionality
         let slideIdx = 0;
         const slides = document.querySelectorAll('.slide');
         const dots = document.querySelectorAll('.dot');
@@ -1113,16 +1267,14 @@
         function currentSlide(n) {
             showSlide(n);
         }
-
-        // Auto-advance slideshow
+        
         setInterval(() => {
             if(document.getElementById('mainContent').classList.contains('show')) {
                 slideIdx = (slideIdx + 1) % slides.length;
                 showSlide(slideIdx);
             }
         }, 4000);
-
-        // Open video in new tab
+        
         function openVideo(url) {
             window.open(url, '_blank');
         }
